@@ -39,7 +39,9 @@ public class MainActivity extends AppCompatActivity {
                 String pass = password.getText().toString().trim();
 
                 if(!user.equals("") && !pass.equals("")){
-                    makerequest(user,pass);
+                    //makerequest(user,pass);
+                    Intent intent=new Intent(getApplicationContext(),Home.class);
+                    startActivity(intent);
                 }else{
                     Toast.makeText(getApplicationContext(),"one of the field is empty",Toast.LENGTH_SHORT).show();
                 }
@@ -57,14 +59,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void makerequest(final String uu, final String pp){
-        StringRequest s = new StringRequest(Request.Method.POST, "http://192.168.43.12/cdc/logincdc1.php", new Response.Listener<String>() {
+        StringRequest s = new StringRequest(Request.Method.POST, "http://192.168.0.104/cdc/logincdc1.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
                 if(response.trim().equals("done")){
                     Toast.makeText(getApplicationContext(),"done",Toast.LENGTH_SHORT).show();
-                    //Intent intent=new Intent(signup3.this,MainActivity.class);
-                    //startActivity(intent);
+                    Intent intent=new Intent(getApplicationContext(),Home.class);
+                    startActivity(intent);
                 }
             }
         }, new Response.ErrorListener() {
