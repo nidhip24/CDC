@@ -5,9 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
 
-    <TextView
+    <com.smarteist.autoimageslider.SliderLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="home" />
+        android:layout_height="230dp"
+        android:layout_alignParentTop="true"
+        android:id="@+id/imageSlider"/>
 
 </FrameLayout>

@@ -80,7 +80,7 @@ public class AboutUs extends Fragment {
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
-            
+
         }
     }
 
