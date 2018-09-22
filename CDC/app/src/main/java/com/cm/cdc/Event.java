@@ -3,28 +3,21 @@ package com.cm.cdc;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-
-import com.smarteist.autoimageslider.SliderLayout;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Team.OnFragmentInteractionListener} interface
+ * {@link Event.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Team#newInstance} factory method to
+ * Use the {@link Event#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Team extends Fragment {
+public class Event extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -34,13 +27,9 @@ public class Team extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private List<TeamData> teamList = new ArrayList<TeamData>();
-    private ListView listView;
-    private CustomListAdapter adapter;
-
     private OnFragmentInteractionListener mListener;
 
-    public Team() {
+    public Event() {
         // Required empty public constructor
     }
 
@@ -50,11 +39,11 @@ public class Team extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Team.
+     * @return A new instance of fragment Event.
      */
     // TODO: Rename and change types and number of parameters
-    public static Team newInstance(String param1, String param2) {
-        Team fragment = new Team();
+    public static Event newInstance(String param1, String param2) {
+        Event fragment = new Event();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -75,7 +64,7 @@ public class Team extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_team, container, false);
+        return inflater.inflate(R.layout.fragment_event, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -85,6 +74,15 @@ public class Team extends Fragment {
         }
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+
+        }
+    }
 
     @Override
     public void onDetach() {
@@ -105,26 +103,5 @@ public class Team extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
-    }
-
-
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        listView = (ListView) getView().findViewById(R.id.list);
-        adapter = new CustomListAdapter(getActivity(), teamList);
-        listView.setAdapter(adapter);
-
-        String name[] = {"Prof. Preethi Rao","Mr. Ashish Modi","Ms. Ninoshka D'silva","Ms. Manila","Rushabh Shah","Vaibhavi OZa","Ajeet Singh Bajwa","Vir Thaker","Sheetal Shetty","Libinsa Nadar","Preet shah","Vaibhavi Pawar","Mayur Pandey"};
-        String post[] ={"Coordinator","Teacher in-charge","Teacher in-charge","Teacher in-charge","Chairperson","Chairperson","Chairperson","Vice Chairperson","Vice Chairperson","Registration HOD","Business Dev HOD","Placement HOD","Internship HOS"};
-
-        int i = 0;
-        for(i = 0;i<name.length;i++){
-            TeamData t = new TeamData(name[i],post[i],i%2);
-            teamList.add(t);
-        }
-        i = 0;
-
-        adapter.notifyDataSetChanged();
     }
 }

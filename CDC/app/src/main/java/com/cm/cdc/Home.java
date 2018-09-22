@@ -26,7 +26,10 @@ public class Home extends AppCompatActivity
     private static final String TAG_HOME = "home";
     private static final String TAG_TEAM = "team";
     private static final String TAG_P = "placement";
-    private static final String TAG_ABOUT= "about us";
+    private static final String TAG_EVENT= "event";
+    private static final String TAG_INTERN= "intern";
+    private static final String TAG_FEEDBACK= "feedback";
+    private static final String TAG_HISTORY= "history";
     public static String CURRENT_TAG = TAG_HOME;
 
     DrawerLayout drawer;
@@ -34,7 +37,7 @@ public class Home extends AppCompatActivity
 
     NavigationView navigationView;
 
-    String activityTitles[] = {"Home","Placement","Team","About us"};
+    String activityTitles[] = {"Home","History","Team","Event","Internship","Placement","Feedback"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,15 +122,24 @@ public class Home extends AppCompatActivity
         if (id == R.id.nav_home) {
             CURRENT_TAG = TAG_HOME;
             navItem = 0;
-        } else if (id == R.id.nav_placement) {
+        }else if (id == R.id.nav_history) {
+            CURRENT_TAG = TAG_HISTORY;
             navItem = 1;
-            CURRENT_TAG = TAG_P;
-        } else if (id == R.id.nav_team) {
+        }else if (id == R.id.nav_team) {
             CURRENT_TAG = TAG_TEAM;
             navItem = 2;
-        } else if (id == R.id.nav_about_us) {
-            CURRENT_TAG = TAG_ABOUT;
+        } else if (id == R.id.nav_event) {
+            CURRENT_TAG = TAG_EVENT;
             navItem = 3;
+        } else if (id == R.id.nav_intern) {
+            navItem = 4;
+            CURRENT_TAG = TAG_INTERN;
+        } else if (id == R.id.nav_placement) {
+            navItem = 5;
+            CURRENT_TAG = TAG_P;
+        }  else if (id == R.id.nav_feedback) {
+            navItem = 6;
+            CURRENT_TAG = TAG_FEEDBACK;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -179,13 +191,22 @@ public class Home extends AppCompatActivity
                 return new HomeFragment();
             case 1:
                 // placement
-                return new Placement();
+                return new History();
             case 2:
                 // team
                 return new Team();
             case 3:
                 // home
-                return new AboutUs();
+                return new Event();
+            case 4:
+                // home
+                return new Internship();
+            case 5:
+                // home
+                return new Placement();
+            case 6:
+                // home
+                return new Feedback();
             default:
                 return new HomeFragment();
         }

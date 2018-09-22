@@ -8,19 +8,23 @@
             android:id="@+id/nav_home"
             android:title="Home" />
         <item
-            android:id="@+id/nav_placement"
-            android:title="Placement" />
+            android:id="@+id/nav_history"
+            android:title="History" />
         <item
             android:id="@+id/nav_team"
             android:title="Team" />
+        <item
+            android:id="@+id/nav_event"
+            android:title="Event" />
+        <item
+            android:id="@+id/nav_intern"
+            android:title="Internship" />
+        <item
+            android:id="@+id/nav_placement"
+            android:title="Placement" />
+        <item
+            android:id="@+id/nav_feedback"
+            android:title="Feedback" />
     </group>
-
-    <item android:title="Other">
-        <menu>
-            <item
-                android:id="@+id/nav_about_us"
-                android:title="About us" />
-        </menu>
-    </item>
 
 </menu>
