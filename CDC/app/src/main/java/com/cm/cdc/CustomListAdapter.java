@@ -12,6 +12,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
+
 import java.util.List;
 
 public class CustomListAdapter extends BaseAdapter {
@@ -59,6 +62,7 @@ public class CustomListAdapter extends BaseAdapter {
         // getting team data for the row
         TeamData m = temaItems.get(position);
         int pos = getItemViewType(position);
+        ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
         if (inflater == null)
             inflater = (LayoutInflater) activity
@@ -73,6 +77,10 @@ public class CustomListAdapter extends BaseAdapter {
 
         }
 
+        if (imageLoader == null)
+            imageLoader = AppController.getInstance().getImageLoader();
+        NetworkImageView thumbNail = (NetworkImageView) convertView
+                .findViewById(R.id.thumbnail);
 
 
         TextView title = (TextView) convertView.findViewById(R.id.title);
@@ -82,11 +90,11 @@ public class CustomListAdapter extends BaseAdapter {
         // title
         title.setText(m.getTitle());
 
-        //set image
-        img.setBackgroundResource(R.drawable.f);
-
         // post
         post.setText(m.getPost());
+
+        //image
+        thumbNail.setImageUrl(m.getImg(), imageLoader);
 
         return convertView;
     }

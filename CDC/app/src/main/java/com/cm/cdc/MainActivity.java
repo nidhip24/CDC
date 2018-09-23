@@ -12,6 +12,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.cm.cdc.admin.AdminC;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -40,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
 
                 if(!user.equals("") && !pass.equals("")){
                     //makerequest(user,pass);
+                    //saving userdata in sharedPrefrence
+                    UserData u = new UserData();
+                    u.saveUserData(getApplicationContext(),user);
+                    
                     Intent intent=new Intent(getApplicationContext(),Home.class);
                     startActivity(intent);
                 }else{
@@ -59,14 +64,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void makerequest(final String uu, final String pp){
-        StringRequest s = new StringRequest(Request.Method.POST, "http://192.168.0.104/cdc/logincdc1.php", new Response.Listener<String>() {
+        URL u = new URL();
+        StringRequest s = new StringRequest(Request.Method.POST, u.url+"logincdc1.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
                 if(response.trim().equals("done")){
-                    Toast.makeText(getApplicationContext(),"done",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),"done",Toast.LENGTH_SHORT).show();
+                    UserData u = new UserData();
+                    u.saveUserData(getApplicationContext(),uu);
+
                     Intent intent=new Intent(getApplicationContext(),Home.class);
                     startActivity(intent);
+                }else if(response.trim().equals("admin")){
+
                 }
             }
         }, new Response.ErrorListener() {

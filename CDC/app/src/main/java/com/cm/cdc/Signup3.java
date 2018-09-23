@@ -60,7 +60,8 @@ public class Signup3 extends AppCompatActivity {
         });
     }
     void makeRequest(){
-        StringRequest s = new StringRequest(Request.Method.POST, "http://192.168.0.104/cdc/registercdc.php", new Response.Listener<String>() {
+        URL u = new URL();
+        StringRequest s = new StringRequest(Request.Method.POST, u.url+"registercdc.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();

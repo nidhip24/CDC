@@ -1,5 +1,6 @@
 package com.cm.cdc;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -15,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Home extends AppCompatActivity
@@ -38,24 +40,18 @@ public class Home extends AppCompatActivity
     NavigationView navigationView;
 
     String activityTitles[] = {"Home","History","Team","Event","Internship","Placement","Feedback"};
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         mHandler = new Handler();
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -65,6 +61,20 @@ public class Home extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View navHeader = navigationView.getHeaderView(0);
+
+        UserData u = new UserData();
+        username = u.getUsername(getApplicationContext());
+        if(username.equals("no")){
+            Toast.makeText(getApplicationContext(),"Login again to continue...",Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(getApplicationContext(),MainActivity.class);
+            //startActivity(i);
+        }else{
+            TextView ut = navHeader.findViewById(R.id.usernamea);
+            ut.setText(username);
+        }
+
 
         if (savedInstanceState == null) {
             navItem = 0;
@@ -87,7 +97,7 @@ public class Home extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.  onBackPressed();
+            //super.  onBackPressed();
         }
     }
 
@@ -156,7 +166,7 @@ public class Home extends AppCompatActivity
         // set toolbar title
         setToolbarTitle();
 
-        Toast.makeText(getApplicationContext(),"ys"+navItem,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"ys"+navItem,Toast.LENGTH_SHORT).show();
 
         if (getSupportFragmentManager().findFragmentByTag(CURRENT_TAG) != null) {
             drawer.closeDrawers();
@@ -181,7 +191,7 @@ public class Home extends AppCompatActivity
         if (mPendingRunnable != null) {
             mHandler.post(mPendingRunnable);
         }
-        Toast.makeText(getApplicationContext(),"yes",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"yes",Toast.LENGTH_SHORT).show();
     }
 
     private Fragment getHomeFragment(){

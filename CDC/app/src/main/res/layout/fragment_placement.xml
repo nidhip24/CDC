@@ -5,10 +5,27 @@
     android:layout_height="match_parent"
     tools:context=".Placement">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="placement" />
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/apply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="158dp"
+            android:text="Apply for placement" />
+
+        <Button
+            android:id="@+id/update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="194dp"
+            android:text="Update" />
+    </RelativeLayout>
 
 </FrameLayout>

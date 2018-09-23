@@ -115,15 +115,13 @@ public class Team extends Fragment {
         adapter = new CustomListAdapter(getActivity(), teamList);
         listView.setAdapter(adapter);
 
-        String name[] = {"Prof. Preethi Rao","Mr. Ashish Modi","Ms. Ninoshka D'silva","Ms. Manila","Rushabh Shah","Vaibhavi OZa","Ajeet Singh Bajwa","Vir Thaker","Sheetal Shetty","Libinsa Nadar","Preet shah","Vaibhavi Pawar","Mayur Pandey"};
-        String post[] ={"Coordinator","Teacher in-charge","Teacher in-charge","Teacher in-charge","Chairperson","Chairperson","Chairperson","Vice Chairperson","Vice Chairperson","Registration HOD","Business Dev HOD","Placement HOD","Internship HOS"};
-
-        int i = 0;
-        for(i = 0;i<name.length;i++){
-            TeamData t = new TeamData(name[i],post[i],i%2);
+        String name[] = {"Prof. Preethi Rao","Mr. Ashish Modi","Ms. Ninoshka D'silva","Ms. Manila","Rushabh Shah","Vaibhavi OZa","Ajeet Singh Bajwa","Vir Thaker","Sheetal Shetty","Libinsa Nadar","Preet shah","Kaiwal Patwa","Vaibhavi Pawar","Mayur Pandey"};
+        String post[] ={"Coordinator","Teacher in-charge","Teacher in-charge","Teacher in-charge","Chairperson","Chairperson","Chairperson","Vice Chairperson","Vice Chairperson","Registration HOD","Business Dev HOD","Business Dev HOD","Placement HOD","Internship HOS"};
+        URL u = new URL();
+        for(int i = 0;i<name.length;i++){
+            TeamData t = new TeamData(name[i],post[i],i%2,u.url+"img/t"+(i+1)+".png");
             teamList.add(t);
         }
-        i = 0;
 
         adapter.notifyDataSetChanged();
     }
