@@ -30,7 +30,8 @@
         <activity android:name=".Placement_data" />
         <activity android:name=".admin.AdminC" />
         <activity android:name=".admin.AdminPlacement" />
-        <activity android:name=".admin.AddPlacement"></activity>
+        <activity android:name=".admin.AddPlacement" />
+        <activity android:name=".UpdateData"></activity>
     </application>
 
 </manifest>

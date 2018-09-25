@@ -2,16 +2,13 @@ package com.cm.cdc;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
@@ -21,80 +18,80 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
+public class UpdateData extends AppCompatActivity {
 
-public class Placement_data extends AppCompatActivity {
+    private String comapanyID,companyName;
 
     // Progress dialog
     private ProgressDialog pDialog;
-    String comapanyID;
-    TextView comp,info;
-    Button btn;
-    String link,information;
+
+    TextView sname,roll,gr,cname,cls;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_placement_data);
+        setContentView(R.layout.activity_update_data);
 
-        Intent i = getIntent();
-        comapanyID = i .getStringExtra("company-id");
-
-
-        comp = findViewById(R.id.companyName);
-        info = findViewById(R.id.info);
-        btn = findViewById(R.id.button);
-
-        pDialog = new ProgressDialog(this);
-        pDialog.setMessage("Please wait...");
-        pDialog.setCancelable(false);
-
-        makeJsonArrayRequest();
-
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(link!=null){
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
-                    startActivity(browserIntent);
-                }else{
-                    Toast.makeText(getApplicationContext(),"Link is missing",Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
-
+//        pDialog = new ProgressDialog(this);
+//        pDialog.setMessage("Please wait...");
+//        pDialog.setCancelable(false);
+//
+//        sname = findViewById(R.id.mfname);
+//        roll = findViewById(R.id.mrollno);
+//        cls = findViewById(R.id.mclass);
+//        gr = findViewById(R.id.mgrno);
+//        cname = findViewById(R.id.mcname);
+//
+//        makeJsonArrayRequestForUserInfo();
+//
+//        Intent i = getIntent();
+//        comapanyID = i .getStringExtra("company-id");
+//        companyName = i .getStringExtra("company-name");
+//        cname.setText(companyName);
     }
 
-    private void makeJsonArrayRequest() {
+    private void makeJsonArrayRequestForUserInfo() {
 
         showpDialog();
 
         String url = new URL().url;
-        url+="getPlacementDetails.php?id="+comapanyID;
+        url+="getUserDetails.php?id="+comapanyID;
 
         JsonArrayRequest req = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                Log.d("PlacementACtivity_data", response.toString());
+                Log.d("Updatedata", response.toString());
 
                 try {
-                    String cname="";
+                    String fname,rol,grn,clsss;
+                    fname = rol = grn = clsss = "";
                     // Parsing json array response
                     // loop through each json object
                     for (int i = 0; i < response.length(); i++) {
 
                         JSONObject com = (JSONObject) response.get(i);
 
-                        cname = com.getString("cname");
-                        information = com.getString("info");
-                        link = com.getString("link");
+                        fname = com.getString("fname");
+                        rol = com.getString("rollno");
+                        grn= com.getString("grno");
+                        clsss = com.getString("clas");
+                        //information = com.getString("info");
+                        //link = com.getString("link");
                         //array.add(cname);
                     }
-                    //adapter.notifyDataSetChanged();
-                    comp.setText(cname);
-                    info.setText(information);
+                    if(!fname.equals("-1") && !roll.equals("-1") && !gr.equals("-1") && !cls.equals("-1")){
+                        sname.setText(fname);
+                        roll.setText(rol);
+                        gr.setText(grn);
+                        cls.setText(clsss);
+                        //set value to textview
+                    }else{
+                        Toast.makeText(getApplicationContext(),"Login again to continur...",Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(getApplicationContext(),Home.class);
+                        startActivity(i);
+                    }
+                    //comp.setText(cname);
+                    //info.setText(information);
 
                 } catch (JSONException e) {
                     e.printStackTrace();

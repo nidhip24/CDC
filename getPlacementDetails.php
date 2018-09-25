@@ -11,9 +11,9 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$cname = $_GET["cname"];
+$id = $_GET["id"];
 
-$sql = "SELECT * FROM `placementdata` WHERE cname='$cname'";
+$sql = "SELECT * FROM `placementdata` WHERE id='$id'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

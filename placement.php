@@ -15,15 +15,10 @@ $cname = $_POST["companyname"];
 $data = $_POST["data"];
 $link = $_POST["link"];
 
-$sql1 = "INSERT INTO `placementcompany`(`cname`) VALUES ('$cname')";
+$sql = "INSERT INTO `placementdata`(`cname`, `info`, `link`) VALUES ('$cname','$data','$link')";
 
-if ($conn->query($sql1) === TRUE) {
-	$sql2 = "INSERT INTO `placementdata`(`cname`, `info`, `link`) VALUES ('$cname','$data','$link')";
-	if ($conn->query($sql2) === TRUE) {
-    	echo "Done";
-    }else {
-    	echo "Error";
-	}
+if ($conn->query($sql) === TRUE) {
+    echo "done";
 } else {
-    echo "Error1";
+    echo "Error";
 }

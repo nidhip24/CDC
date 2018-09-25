@@ -1,5 +1,6 @@
 package com.cm.cdc;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,11 +17,15 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class Signup3 extends AppCompatActivity {
 
     EditText uid,pass, cnfpass ,memno ;
     Button reg3;
     String fname,rollno,grno,phno,eid,clas,ssc,hsc,sem1,sem2,sem3,sem4;
+
+    // Progress dialog
+    private ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +52,18 @@ public class Signup3 extends AppCompatActivity {
         sem3 = i.getStringExtra("sem3");
         sem4 = i.getStringExtra("sem4");
 
+        pDialog = new ProgressDialog(this);
+        pDialog.setMessage("Please wait...");
+        pDialog.setCancelable(false);
+
         reg3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!uid.getText().toString().equals("") && !pass.getText().toString().equals("") && !cnfpass.getText().toString().equals("") &&!memno.getText().toString().equals("")){
-                    makeRequest();
+                    if(pass.getText().toString().equals(cnfpass.getText().toString()))
+                        makeRequest();
+                    else
+                        Toast.makeText(getApplicationContext(),"Password dosen't match",Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(getApplicationContext(),"one of the field is empty",Toast.LENGTH_SHORT).show();
                 }
@@ -60,6 +72,7 @@ public class Signup3 extends AppCompatActivity {
         });
     }
     void makeRequest(){
+        showpDialog();
         URL u = new URL();
         StringRequest s = new StringRequest(Request.Method.POST, u.url+"registercdc.php", new Response.Listener<String>() {
             @Override
@@ -68,12 +81,16 @@ public class Signup3 extends AppCompatActivity {
                 if(response.trim().equals("Done")){
                     Intent intent=new Intent(Signup3.this,MainActivity.class);
                     startActivity(intent);
+                }else{
+
                 }
+                hidepDialog();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(),"error",Toast.LENGTH_SHORT).show();
+                hidepDialog();
             }
         }){
             @Override
@@ -101,5 +118,15 @@ public class Signup3 extends AppCompatActivity {
             }
         };
         AppController.getInstance().addToRequestQueue(s);
+    }
+
+    private void showpDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hidepDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
     }
 }

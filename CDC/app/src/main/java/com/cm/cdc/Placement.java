@@ -101,6 +101,7 @@ public class Placement extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getContext(),Placement_company_list.class);
+                i.putExtra("mode",0);
                 startActivity(i);
             }
         });
@@ -108,7 +109,9 @@ public class Placement extends Fragment {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i = new Intent(getContext(),Placement_company_list.class);
+                i.putExtra("mode",1);
+                startActivity(i);
             }
         });
     }

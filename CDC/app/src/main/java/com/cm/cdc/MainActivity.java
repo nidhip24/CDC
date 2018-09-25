@@ -40,13 +40,13 @@ public class MainActivity extends AppCompatActivity {
                 String pass = password.getText().toString().trim();
 
                 if(!user.equals("") && !pass.equals("")){
-                    //makerequest(user,pass);
+                    makerequest(user,pass);
                     //saving userdata in sharedPrefrence
-                    UserData u = new UserData();
-                    u.saveUserData(getApplicationContext(),user);
-                    
-                    Intent intent=new Intent(getApplicationContext(),Home.class);
-                    startActivity(intent);
+//                    UserData u = new UserData();
+//                    u.saveUserData(getApplicationContext(),user);
+//
+//                    Intent intent=new Intent(getApplicationContext(),Home.class);
+//                    startActivity(intent);
                 }else{
                     Toast.makeText(getApplicationContext(),"one of the field is empty",Toast.LENGTH_SHORT).show();
                 }
@@ -77,7 +77,13 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent=new Intent(getApplicationContext(),Home.class);
                     startActivity(intent);
                 }else if(response.trim().equals("admin")){
+                    UserData u = new UserData();
+                    u.saveUserData(getApplicationContext(),uu);
 
+                    Intent intent=new Intent(getApplicationContext(),AdminC.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getApplicationContext(),"Invalid username or password",Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {

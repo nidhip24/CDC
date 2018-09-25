@@ -12,15 +12,18 @@ if ($conn->connect_error) {
 }
 
 
-$sql = "SELECT * FROM `placementcompany`";
+$sql = "SELECT id,cname,status FROM `placementdata`";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) { 
-		$str[]=  array(
-        'cname' => $row["cname"]
-       );
+    	if($row["status"]=="open"){
+    		$str[]=  array(
+    			'id' => $row["id"],
+	    		'cname' => $row["cname"]
+	    	);
+    	}
     }
     echo json_encode($str);
 }else{

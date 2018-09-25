@@ -25,8 +25,10 @@ import java.util.ArrayList;
 public class Placement_company_list extends AppCompatActivity {
 
     ListView l;
-    ArrayList<String> array = new ArrayList<String>();;
+    ArrayList<String> array = new ArrayList<String>();
+    ArrayList<String> idarray = new ArrayList<String>();
     ArrayAdapter adapter;
+    int mode=-1;
 
     // Progress dialog
     private ProgressDialog pDialog;
@@ -41,6 +43,8 @@ public class Placement_company_list extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,array);
         l.setAdapter(adapter);
 
+        Intent ii = getIntent();
+        mode=ii.getIntExtra("mode",-1);
         adapter.notifyDataSetChanged();
         pDialog = new ProgressDialog(this);
         pDialog.setMessage("Please wait...");
@@ -50,10 +54,19 @@ public class Placement_company_list extends AppCompatActivity {
         l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(),mode+"",Toast.LENGTH_SHORT).show();
                 Toast.makeText(getApplicationContext(),array.get(position),Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(getApplicationContext(),Placement_data.class);
-                i.putExtra("company",array.get(position));
-                startActivity(i);
+                if(mode!=-1 && mode==1){
+                    Intent i = new Intent(getApplicationContext(),UpdateData.class);
+                    i.putExtra("company-id",idarray.get(position));
+                    i.putExtra("company-name",array.get(position));
+                    startActivity(i);
+                }else{
+                    Intent i = new Intent(getApplicationContext(),Placement_data.class);
+                    i.putExtra("company-id",idarray.get(position));
+                    startActivity(i);
+                }
+
             }
         });
     }
@@ -78,6 +91,8 @@ public class Placement_company_list extends AppCompatActivity {
                                 JSONObject com = (JSONObject) response.get(i);
 
                                 String cname = com.getString("cname");
+                                int id =com.getInt("id");
+                                idarray.add(id+"");
                                 array.add(cname);
                             }
                             adapter.notifyDataSetChanged();
