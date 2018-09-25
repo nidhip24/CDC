@@ -11,11 +11,11 @@ if ($conn->connect_error) {
 } 
 
 $userID = $_POST["userID"];
-$cid = $_POST["cid"];
+$pid = $_POST["pid"];
 $des = $_POST["designation"];
 $pack = $_POST["package"];
 
-$sql = "INSERT INTO `update`(`uid`,`cid`,`designation`,`package`) VALUES ('$userID','$cid','$des','$pack')";
+$sql = "INSERT INTO `updatePlacement`(`uid`,`pid`,`designation`,`package`) VALUES ('$userID','$pid','$des','$pack')";
 if ($conn->query($sql1) === TRUE) {
     echo "Done";
 } else {
