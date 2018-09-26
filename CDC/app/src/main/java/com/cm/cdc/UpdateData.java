@@ -68,6 +68,8 @@ public class UpdateData extends AppCompatActivity {
             public void onClick(View v) {
                 if(!packsal.getText().toString().equals("") && !des.getText().toString().equals("")){
                     makerequest();
+                }else{
+                    Toast.makeText(getApplicationContext(),"One of the field is empty",Toast.LENGTH_SHORT).show();
                 }
             }
         });

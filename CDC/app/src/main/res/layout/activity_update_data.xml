@@ -1,156 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
+    android:fillViewport="true"
     tools:context=".UpdateData">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="Update Information"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textSize="24sp" />
 
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView23"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="45dp"
+            android:text="Name" />
 
-            <TextView
-                android:id="@+id/textView16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:text="Update Information"
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textSize="24sp" />
+        <TextView
+            android:id="@+id/mfname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textView25"
+            android:layout_marginStart="131dp"
+            android:layout_toEndOf="@+id/textView25"
+            android:text="Nidhip kathiriya" />
 
-            <TextView
-                android:id="@+id/textView17"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="68dp"
-                android:text="Name" />
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView25"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="24dp"
+            android:text="GR No" />
 
-            <TextView
-                android:id="@+id/mfname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignTop="@+id/textView17"
-                android:layout_marginEnd="129dp"
-                android:text="Nidhip kathiriya" />
+        <TextView
+            android:id="@+id/mgrno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mfname"
+            android:layout_marginStart="128dp"
+            android:layout_marginTop="24dp"
+            android:layout_toEndOf="@+id/textView27"
+            android:text="2242" />
 
-            <TextView
-                android:id="@+id/textView19"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="141dp"
-                android:text="Roll No" />
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView27"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="24dp"
+            android:text="Roll No" />
 
-            <TextView
-                android:id="@+id/mrollno"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/mfname"
-                android:layout_alignTop="@+id/textView19"
-                android:text="15272" />
+        <TextView
+            android:id="@+id/mrollno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mgrno"
+            android:layout_marginStart="125dp"
+            android:layout_marginTop="24dp"
+            android:layout_toEndOf="@+id/textView30"
+            android:text="34242" />
 
-            <TextView
-                android:id="@+id/textView21"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="179dp"
-                android:text="Class" />
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView30"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="24dp"
+            android:text="Class" />
 
-            <TextView
-                android:id="@+id/mclass"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/mfname"
-                android:layout_alignTop="@+id/textView21"
-                android:text="TE6" />
+        <TextView
+            android:id="@+id/mclass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mrollno"
+            android:layout_marginStart="134dp"
+            android:layout_marginTop="24dp"
+            android:layout_toEndOf="@+id/textView32"
+            android:text="TE6" />
 
-            <TextView
-                android:id="@+id/textView24"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="216dp"
-                android:text="Company Name" />
+        <TextView
+            android:id="@+id/textView34"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView32"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="24dp"
+            android:text="Company Name" />
 
-            <TextView
-                android:id="@+id/mcname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/mfname"
-                android:layout_alignTop="@+id/textView24"
-                android:text="LNT" />
-            <TextView
-                android:id="@+id/textView26"
-                android:layout_width="97dp"
-                android:layout_height="36dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginBottom="200dp"
-                android:text="Designation"
-                android:textSize="16sp" />
+        <TextView
+            android:id="@+id/mcname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mclass"
+            android:layout_marginStart="69dp"
+            android:layout_marginTop="24dp"
+            android:layout_toEndOf="@+id/textView34"
+            android:text="LNT" />
 
-            <EditText
-                android:id="@+id/mdesignation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/textView26"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="20dp"
-                android:ems="10"
-                android:inputType="textPersonName" />
+        <TextView
+            android:id="@+id/textView36"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView34"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="34dp"
+            android:text="Designation" />
 
-            <TextView
-                android:id="@+id/Package"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginBottom="148dp"
-                android:text="Package" />
+        <EditText
+            android:id="@+id/mdesignation"
+            android:layout_width="199dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mcname"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="0dp"
+            android:layout_toEndOf="@+id/textView36"
+            android:ems="10"
+            android:inputType="textPersonName" />
 
-            <EditText
-                android:id="@+id/mpackage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/Package"
-                android:layout_alignStart="@+id/mdesignation"
-                android:ems="10"
-                android:inputType="number" />
+        <TextView
+            android:id="@+id/textView38"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView36"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="33dp"
+            android:text="Package" />
 
+        <EditText
+            android:id="@+id/mpackage"
+            android:layout_width="199dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mdesignation"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="112dp"
+            android:layout_marginTop="12dp"
+            android:layout_toEndOf="@+id/textView38"
+            android:ems="10"
+            android:inputType="number" />
 
-            <Button
-                android:id="@+id/mupdate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="34dp"
-                android:text="update" />
-
-            <TextView
-                android:id="@+id/textView18"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="108dp"
-                android:text="GR No" />
-
-            <TextView
-                android:id="@+id/mgrno"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/mupdate"
-                android:layout_alignTop="@+id/textView18"
-                android:text="45453" />
-</RelativeLayout>
+        <Button
+            android:id="@+id/mupdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mpackage"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="26dp"
+            android:layout_marginBottom="35dp"
+            android:text="Button" />
+    </RelativeLayout>
+</ScrollView>

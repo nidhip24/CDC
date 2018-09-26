@@ -10,8 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.regex.Pattern;
-
 public class Signup extends AppCompatActivity {
 
     EditText fname,rollno,grno,phno,eid;
@@ -23,7 +21,7 @@ public class Signup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        fname = (EditText) findViewById(R.id.fname);
+        fname = (EditText) findViewById(R.id.mfname);
         rollno = (EditText) findViewById(R.id.rollno);
         grno = (EditText) findViewById(R.id.grno);
         phno = (EditText) findViewById(R.id.phno);
