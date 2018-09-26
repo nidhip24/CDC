@@ -16,8 +16,8 @@ $des = $_POST["designation"];
 $pack = $_POST["package"];
 
 $sql = "INSERT INTO `updatePlacement`(`uid`,`pid`,`designation`,`package`) VALUES ('$userID','$pid','$des','$pack')";
-if ($conn->query($sql1) === TRUE) {
-    echo "Done";
+if ($conn->query($sql) === TRUE) {
+    echo "done";
 } else {
     echo "Error";
 }

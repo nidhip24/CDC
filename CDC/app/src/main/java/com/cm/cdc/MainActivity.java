@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
                 if(response.trim().equals("done")){
-                    //Toast.makeText(getApplicationContext(),"done",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"done",Toast.LENGTH_SHORT).show();
                     UserData u = new UserData();
                     u.saveUserData(getApplicationContext(),uu);
 

@@ -22,14 +22,17 @@ if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
         if($uid == $row["uid"] && $pass == $row["pass"]){
-        	
-        	$sql = "SELECT `username` FROM `user_privilege` WHERE username='$uid'";
+        	$flag = -1;
+        	$sql = "SELECT `username`,`type` FROM `user_privilege` WHERE username='$uid'";
         	$result = $conn->query($sql);
         	if ($result->num_rows > 0) {
         		while($row = $result->fetch_assoc()) {
-        			if($uid == $row["username"]){
+        			if($uid == $row["username"] && $row["type"]=="admin"){
         				echo "admin";
         			}
+        		}
+        		if ($flag==-1) {
+        			echo "done";
         		}
         	}else{	
         		echo "done";

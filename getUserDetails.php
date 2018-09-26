@@ -11,9 +11,9 @@ if ($conn->connect_error) {
     die("Connection failed: " );//. $conn->connect_error);
 }
 
-$id = $_GET["id"];
+$id = $_GET["user"];
 
-$sql = "SELECT fname,rollno,grno,clas FROM `mycdc` WHERE id='$id'";
+$sql = "SELECT fname,rollno,grno,clas,id FROM `mycdc` WHERE uid='$id'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -23,7 +23,8 @@ if ($result->num_rows > 0) {
     			'fname' => $row["fname"],
 	    		'rollno' => $row["rollno"],
                 'grno' => $row["grno"],
-                'clas' => $row["clas"]
+                'clas' => $row["clas"],
+                'id' =>$row["id"]
 	    	);
     }
     echo json_encode($str);
