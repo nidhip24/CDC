@@ -1,14 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/scrollview"
     tools:context=".HomeFragment">
 
-    <com.smarteist.autoimageslider.SliderLayout
-        android:layout_width="match_parent"
-        android:layout_height="230dp"
-        android:layout_alignParentTop="true"
-        android:id="@+id/imageSlider"/>
 
-</FrameLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:descendantFocusability="blocksDescendants">
+        <View
+            android:layout_width="fill_parent"
+            android:id="@+id/focus_view"
+            android:layout_height="0dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+        </View>
+
+        <com.smarteist.autoimageslider.SliderLayout
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_alignParentTop="true"
+            android:id="@+id/imageSlider"/>
+
+        <TextView
+            android:id="@+id/homeinfo"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageSlider"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="16dp"
+            tools:text="sdada" />
+
+        <VideoView
+            android:id="@+id/vid1"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_below="@+id/homeinfo"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="20dp" />
+
+        <VideoView
+            android:id="@+id/vid2"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_below="@+id/vid1"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"/>
+
+        <ImageButton
+            android:id="@+id/img_v2"
+            android:layout_width="53dp"
+            android:layout_height="45dp"
+            android:layout_alignTop="@+id/vid2"
+            android:layout_alignEnd="@+id/vid2"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="161dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="170dp"
+            android:background="#00ffffff"
+            android:src="@android:drawable/ic_media_play" />
+
+        <ImageButton
+            android:id="@+id/img_v1"
+            android:layout_width="53dp"
+            android:layout_height="45dp"
+            android:layout_alignTop="@+id/vid1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:background="#00ffffff"
+            android:src="@drawable/ic_media_play" />
+
+
+    </RelativeLayout>
+
+</ScrollView>

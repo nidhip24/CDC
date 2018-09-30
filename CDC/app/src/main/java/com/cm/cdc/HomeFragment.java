@@ -1,15 +1,22 @@
 package com.cm.cdc;
 
 import android.content.Context;
+import android.content.IntentFilter;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.smarteist.autoimageslider.SliderLayout;
 import com.smarteist.autoimageslider.SliderView;
@@ -34,6 +41,11 @@ public class HomeFragment extends Fragment {
     private String mParam2;
 
     SliderLayout sliderLayout;
+
+    TextView info;
+    VideoView v1,v2;
+
+    Uri uri,uri2;
 
     private OnFragmentInteractionListener mListener;
 
@@ -70,7 +82,54 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        final ImageButton imgbtn = getView().findViewById(R.id.img_v2);
+        final ImageButton imgbtn2 = getView().findViewById(R.id.img_v1);
         sliderLayout = getView().findViewById(R.id.imageSlider);
+        info = getView().findViewById(R.id.homeinfo);
+        v1 = getView().findViewById(R.id.vid1);
+        v2 = getView().findViewById(R.id.vid2);
+
+        ScrollView ss = getView().findViewById(R.id.scrollview);
+
+
+        info.setText(Html.fromHtml(getString(R.string.home_data)));
+
+        uri = Uri.parse("android.resource://"+getActivity().getPackageName()+"/"+R.raw.vidone);
+        uri2 = Uri.parse("android.resource://"+getActivity().getPackageName()+"/"+R.raw.vidtwo);
+
+        v2.setVideoURI(uri2);
+        v1.setVideoURI(uri);
+
+        imgbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!v2.isPlaying()){
+                    Toast.makeText(getActivity(),"aa3a2",Toast.LENGTH_SHORT).show();
+                    v2.start();
+                    imgbtn.setImageResource(R.drawable.ic_media_pause);
+                }else{
+                    Toast.makeText(getActivity(),"aa4a",Toast.LENGTH_SHORT).show();
+                    v2.pause();
+                    imgbtn.setImageResource(R.drawable.ic_media_play);
+                }
+            }
+        });
+
+        imgbtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!v1.isPlaying()){
+                    Toast.makeText(getActivity(),"aa3a1",Toast.LENGTH_SHORT).show();
+                    v1.start();
+                    imgbtn2.setImageResource(R.drawable.ic_media_pause);
+                }else{
+                    Toast.makeText(getActivity(),"aa4a",Toast.LENGTH_SHORT).show();
+                    v1.pause();
+                    imgbtn2.setImageResource(R.drawable.ic_media_play);
+                }
+            }
+        });
+
         sliderLayout.setIndicatorAnimation(SliderLayout.Animations.FILL); //set indicator animation by using SliderLayout.Animations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
         sliderLayout.setScrollTimeInSec(1); //set scroll delay in seconds :
 
@@ -79,23 +138,98 @@ public class HomeFragment extends Fragment {
 
     private void setSliderViews() {
 
-        for (int i = 0; i <= 3; i++) {
+        URL u = new URL();
+        String url = u.url+"img/";
+        for (int i = 0; i <= 27; i++) {
 
             SliderView sliderView = new SliderView(getActivity());
 
             switch (i) {
                 case 0:
-                    sliderView.setImageUrl("https://images.pexels.com/photos/547114/pexels-photo-547114.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+                    sliderView.setImageUrl(url+"s1.JPG");
                     break;
                 case 1:
-                    sliderView.setImageUrl("https://images.pexels.com/photos/218983/pexels-photo-218983.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+                    sliderView.setImageUrl(url+"s2.JPG");
                     break;
                 case 2:
-                    sliderView.setImageUrl("https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
+                    sliderView.setImageUrl(url+"s3.JPG");
                     break;
                 case 3:
-                    sliderView.setImageUrl("https://images.pexels.com/photos/929778/pexels-photo-929778.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+                    sliderView.setImageUrl(url+"s4.JPG");
                     break;
+                case 4:
+                    sliderView.setImageUrl(url+"s5.JPG");
+                    break;
+                case 5:
+                    sliderView.setImageUrl(url+"s6.JPG");
+                    break;
+                case 6:
+                    sliderView.setImageUrl(url+"s7.JPG");
+                    break;
+                case 7:
+                    sliderView.setImageUrl(url+"s8.JPG");
+                    break;
+                case 8:
+                    sliderView.setImageUrl(url+"s9.JPG");
+                    break;
+                case 9:
+                    sliderView.setImageUrl(url+"s10.JPG");
+                    break;
+                case 10:
+                    sliderView.setImageUrl(url+"s11.JPG");
+                    break;
+                case 11:
+                    sliderView.setImageUrl(url+"s12.JPG");
+                    break;
+                case 12:
+                    sliderView.setImageUrl(url+"s13.JPG");
+                    break;
+                case 13:
+                    sliderView.setImageUrl(url+"s14.JPG");
+                    break;
+                case 14:
+                    sliderView.setImageUrl(url+"s15.JPG");
+                    break;
+                case 15:
+                    sliderView.setImageUrl(url+"s16.JPG");
+                    break;
+                case 16:
+                    sliderView.setImageUrl(url+"s17.JPG");
+                    break;
+                case 17:
+                    sliderView.setImageUrl(url+"s18.JPG");
+                    break;
+                case 18:
+                    sliderView.setImageUrl(url+"s19.JPG");
+                    break;
+                case 19:
+                    sliderView.setImageUrl(url+"s20.JPG");
+                    break;
+                case 20:
+                    sliderView.setImageUrl(url+"s21.JPG");
+                    break;
+                case 21:
+                    sliderView.setImageUrl(url+"s22.JPG");
+                    break;
+                case 22:
+                    sliderView.setImageUrl(url+"s23.JPG");
+                    break;
+                case 23:
+                    sliderView.setImageUrl(url+"s24.JPG");
+                    break;
+                case 24:
+                    sliderView.setImageUrl(url+"s25.JPG");
+                    break;
+                case 25:
+                    sliderView.setImageUrl(url+"s26.JPG");
+                    break;
+                case 26:
+                    sliderView.setImageUrl(url+"s27.JPG");
+                    break;
+                case 27:
+                    sliderView.setImageUrl(url+"s28.JPG");
+                    break;
+
             }
 
             sliderView.setImageScaleType(ImageView.ScaleType.CENTER_CROP);

@@ -8,6 +8,18 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="home_data">
+        <![CDATA[
+        <p><b>CDC</b></p>
+        <p>The Career Development Cell of Nagindas Khandwala College is a link between the students and companies. We help our students to find the right job and companies to find the right employee for their company. We align the requirements of the students and companies giving our students a kick start to their career. The Career Development Cell was originally started as an Placement Cellof the students to help each other find Placements through a common platform. The success of the Placement Cell led to the birth of CDC and today it provides internships and placements to students from all streams of the college. In addition to this we also provide training to our students to excel in their career.</p>
+        <p><b>WHAT WE DO</b></p>
+        <p>As the Career Development Cell, we are responsible for placing the students from all streams. Our college offers undergraduate courses in Arts, and Commerce. Our college offers BCOM, BA, BSc IT, BSC CS, BAF, BBI, BFM, BMS & BMM. We also provide training to our students to increase their employability by arranging sessions for aptitude, soft skills through various trainers and institutes</p>
+        <p><b>WHY CDC?</b></p>
+        <p>There are many jobs across the country with the economy getting better and MNCs exploring the nation. Then why would someone need placement guidance? The process of recruitment seems simple enough – study, graduate, apply, and get a job. Well, truth be told, it is much more difficult than this. There are plenty of jobs, of course, but there is also stringent competition to match the availability. Plus, many people lose out on jobs even though they are qualified because they do not have knowledge about how the system actually works.</p>
+        <p><b>NKCDC UDAAN 2018 </b></p>
+        <p>‘UDAAN’ is the corporate festival of Career Development Cell growing since its establishment. Udaan is a three-day-fest wherein we conduct various competitions which focuses to enhance skills of students in the field of Management and Career Development. Along with competitions we also conduct Seminars by industry professionals</p>
+        ]]>
+    </string>
 </resources>

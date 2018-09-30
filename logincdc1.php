@@ -29,6 +29,7 @@ if ($result->num_rows > 0) {
         		while($row = $result->fetch_assoc()) {
         			if($uid == $row["username"] && $row["type"]=="admin"){
         				echo "admin";
+        				$flag = 1;
         			}
         		}
         		if ($flag==-1) {

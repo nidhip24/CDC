@@ -11,16 +11,21 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.cm.cdc.admin.AdminC;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Placement_company_list extends AppCompatActivity {
 
@@ -61,6 +66,9 @@ public class Placement_company_list extends AppCompatActivity {
                     i.putExtra("company-id",idarray.get(position));
                     i.putExtra("company-name",array.get(position));
                     startActivity(i);
+                }else if(mode!=-1 && mode==2){
+                    String lid = idarray.get(position);
+                    deletePlacement(lid);
                 }else{
                     Intent i = new Intent(getApplicationContext(),Placement_data.class);
                     i.putExtra("company-id",idarray.get(position));
@@ -69,6 +77,36 @@ public class Placement_company_list extends AppCompatActivity {
 
             }
         });
+    }
+
+    private  void deletePlacement(final String lid){
+        URL u = new URL();
+        StringRequest s = new StringRequest(Request.Method.POST, u.url+"delplacement.php", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
+                if(response.trim().equals("done")){
+                    Toast.makeText(getApplicationContext(),"Deleted",Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(getApplicationContext(),AdminC.class);
+                    //startActivity(intent);
+                }else{
+                    Toast.makeText(getApplicationContext(),"Try again after some time...",Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),"error",Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id", lid);
+                return params;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(s);
     }
 
     private void makeJsonArrayRequest() {

@@ -87,9 +87,9 @@ public class Placement_data extends AppCompatActivity {
 
                         JSONObject com = (JSONObject) response.get(i);
 
-                        cname = com.getString("cname");
-                        information = com.getString("info");
-                        link = com.getString("link");
+                        cname = com.getString("cname").trim();
+                        information = com.getString("info").trim();
+                        link = com.getString("link").trim();
                         //array.add(cname);
                     }
                     //adapter.notifyDataSetChanged();

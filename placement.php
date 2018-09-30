@@ -20,5 +20,6 @@ $sql = "INSERT INTO `placementdata`(`cname`, `info`, `link`) VALUES ('$cname','$
 if ($conn->query($sql) === TRUE) {
     echo "done";
 } else {
-    echo "Error";
+    echo "Error".$sql;
+
 }
