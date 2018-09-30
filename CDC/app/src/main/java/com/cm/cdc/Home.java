@@ -69,7 +69,9 @@ public class Home extends AppCompatActivity
         if(username.equals("no")){
             Toast.makeText(getApplicationContext(),"Login again to continue...",Toast.LENGTH_SHORT).show();
             Intent i = new Intent(getApplicationContext(),MainActivity.class);
-            //startActivity(i);
+            i.addCategory( Intent.CATEGORY_HOME );
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
         }else{
             TextView ut = navHeader.findViewById(R.id.usernamea);
             ut.setText(username);
@@ -99,6 +101,20 @@ public class Home extends AppCompatActivity
         } else {
             //super.  onBackPressed();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        UserData u = new UserData();
+        username = u.getUsername(getApplicationContext());
+        if(username.equals("no")){
+            //Toast.makeText(getApplicationContext(),"Login again to continue...",Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(getApplicationContext(),MainActivity.class);
+            i.addCategory( Intent.CATEGORY_HOME );
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
+        }
+        super.onResume();
     }
 
     @Override
@@ -150,12 +166,18 @@ public class Home extends AppCompatActivity
         }  else if (id == R.id.nav_feedback) {
             navItem = 6;
             CURRENT_TAG = TAG_FEEDBACK;
+        } else if (id == R.id.nav_logout) {
+            Toast.makeText(getApplicationContext(),"Logout",Toast.LENGTH_SHORT).show();
+            UserData u = new UserData();
+            u.deleteUser(getApplication());
+            Intent i = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-
-        loadFragment();
+        if(id != R.id.nav_logout)
+            loadFragment();
         return true;
     }
 

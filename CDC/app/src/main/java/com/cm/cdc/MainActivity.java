@@ -1,6 +1,9 @@
 package com.cm.cdc;
 
 import android.content.Intent;
+import android.os.Handler;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
     EditText username,password;
     Button signin,signup;
+    boolean doubleBackToExitPressedOnce = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,9 +73,10 @@ public class MainActivity extends AppCompatActivity {
         StringRequest s = new StringRequest(Request.Method.POST, u.url+"logincdc1.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
                 if(response.trim().equals("done")){
-                    Toast.makeText(getApplicationContext(),"done",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"logging in...",Toast.LENGTH_SHORT).show();
+
                     UserData u = new UserData();
                     u.saveUserData(getApplicationContext(),uu);
 
@@ -102,5 +108,25 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         AppController.getInstance().addToRequestQueue(s);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
     }
 }
