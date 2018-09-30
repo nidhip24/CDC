@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2018 at 02:55 PM
--- Server version: 10.1.33-MariaDB
--- PHP Version: 7.2.6
+-- Generation Time: Sep 30, 2018 at 07:30 PM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -85,7 +85,9 @@ CREATE TABLE `placementdata` (
 --
 
 INSERT INTO `placementdata` (`id`, `cname`, `info`, `link`, `status`, `date`) VALUES
-(1, 'LNT', 'Greetings to all, \r\n\r\nCareer Development Cell is here with big opportunity for our Current TY IT CS students.  \r\n\r\nHello friends. Pool campus by L & T Infotech is arranged on 19 and 20 July 2018 at Thanks College for current TYBSC cs and it students. It is only for colleges between Andheri and Bhayandar. We shall not entertain students coming from outside of this range. Please ask your eligible students to enroll at following link by tomorrow before 7 pm. \r\n\r\nStudents are requested to not to pass the link to NON CDC STUDENTS. \r\n\r\nAlso please both the Google forms before tomorrow 7 pm.\r\n\r\n\r\nSSC and HSC 50% \r\n\r\nSem 1-4 60%\r\n\r\n\r\nThank you \r\n\r\n- Mr Ashish Modi.', 'https://stackoverflow.com/questions/2201917/how-can-i-open-a-url-in-androids-web-browser-from-my-application', 'open', '2018-09-25 16:16:13');
+(1, 'LNT', 'Greetings to all, \r\n\r\nCareer Development Cell is here with big opportunity for our Current TY IT CS students.  \r\n\r\nHello friends. Pool campus by L & T Infotech is arranged on 19 and 20 July 2018 at Thanks College for current TYBSC cs and it students. It is only for colleges between Andheri and Bhayandar. We shall not entertain students coming from outside of this range. Please ask your eligible students to enroll at following link by tomorrow before 7 pm. \r\n\r\nStudents are requested to not to pass the link to NON CDC STUDENTS. \r\n\r\nAlso please both the Google forms before tomorrow 7 pm.\r\n\r\n\r\nSSC and HSC 50% \r\n\r\nSem 1-4 60%\r\n\r\n\r\nThank you \r\n\r\n- Mr Ashish Modi.', 'https://stackoverflow.com/questions/2201917/how-can-i-open-a-url-in-androids-web-browser-from-my-application', 'open', '2018-09-25 16:16:13'),
+(8, 'dffffdas', 'asdadasd\r\nsasd\r\nasd\r\nass\r\ndas\r\nda\r\ndas\r\ndas', 'https://www.w3schools.com/html/tryit.asp?filename=tryhtml_elem_textarea', 'open', '2018-09-30 10:18:37'),
+(10, 'kwhfwlhfbkwf', 'aojfwpkfwfev\nsf9snfosmclwc\nec\nepcmsmfwc', 'https://goo.gl/forms/mdq6KxVlOoBeQEZA3', 'close', '2018-09-30 10:22:30');
 
 -- --------------------------------------------------------
 
@@ -106,7 +108,9 @@ CREATE TABLE `updateplacement` (
 --
 
 INSERT INTO `updateplacement` (`id`, `pid`, `uid`, `designation`, `package`) VALUES
-(6, 1, 9, 'fuuiggi', 9868);
+(6, 1, 9, 'fuuiggi', 9868),
+(7, 1, 9, 'hshs', 6898),
+(8, 10, 9, 'nfne', 89495);
 
 -- --------------------------------------------------------
 
@@ -167,13 +171,13 @@ ALTER TABLE `mycdc`
 -- AUTO_INCREMENT for table `placementdata`
 --
 ALTER TABLE `placementdata`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `updateplacement`
 --
 ALTER TABLE `updateplacement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
