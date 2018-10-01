@@ -31,16 +31,27 @@ public class Signup extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(isEmailValid(eid.getText().toString()) && (phno.getText().toString().length())==10 && !fname.getText().toString().equals("") && !rollno.getText().toString().equals("") && !grno.getText().toString().equals("") &&!phno.getText().toString().equals("") && !eid.getText().toString().equals("")){
-                    Intent i = new Intent(getApplicationContext(),Signup2.class);
-                    i.putExtra("fname",fname.getText().toString());
-                    i.putExtra("roll",rollno.getText().toString());
-                    i.putExtra("grno",grno.getText().toString());
-                    i.putExtra("phno",phno.getText().toString());
-                    i.putExtra("eid",eid.getText().toString());
-                    startActivity(i);
+                if( !fname.getText().toString().equals("") && !rollno.getText().toString().equals("") && !grno.getText().toString().equals("") &&!phno.getText().toString().equals("") && !eid.getText().toString().equals("")){
+                    int flag=-1;
+                    if(!isEmailValid(eid.getText().toString())){
+                        Toast.makeText(getApplicationContext(),"Invalid email id",Toast.LENGTH_SHORT).show();
+                        flag=0;
+                    }
+                    if((phno.getText().toString().length())!=10){
+                        Toast.makeText(getApplicationContext(),"Phone number must be of 10 digit",Toast.LENGTH_SHORT).show();
+                        flag=0;
+                    }
+                    if(flag==-1){
+                        Intent i = new Intent(getApplicationContext(),Signup2.class);
+                        i.putExtra("fname",fname.getText().toString());
+                        i.putExtra("roll",rollno.getText().toString());
+                        i.putExtra("grno",grno.getText().toString());
+                        i.putExtra("phno",phno.getText().toString());
+                        i.putExtra("eid",eid.getText().toString());
+                        startActivity(i);
+                    }
                 }else{
-                    Toast.makeText(getApplicationContext(),"one of the field is empty or wrong entrered value",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"one of the field is empty",Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -77,7 +77,7 @@ public class Signup3 extends AppCompatActivity {
         StringRequest s = new StringRequest(Request.Method.POST, u.url+"registercdc.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
                 if(response.trim().equals("Done")){
                     Intent intent=new Intent(Signup3.this,MainActivity.class);
                     startActivity(intent);

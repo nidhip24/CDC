@@ -19,6 +19,15 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.cm.cdc.admin.AdminC;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -47,6 +56,7 @@ public class Home extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        makerequest();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -83,6 +93,15 @@ public class Home extends AppCompatActivity
             CURRENT_TAG = TAG_HOME;
             loadFragment();
         }
+
+
+    }
+
+    private void hideItem()
+    {
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        Menu nav_Menu = navigationView.getMenu();
+        nav_Menu.findItem(R.id.nav_placement).setVisible(false);
     }
 
     private void setToolbarTitle() {
@@ -114,6 +133,7 @@ public class Home extends AppCompatActivity
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
         }
+        makerequest();
         super.onResume();
     }
 
@@ -242,5 +262,36 @@ public class Home extends AppCompatActivity
             default:
                 return new HomeFragment();
         }
+    }
+
+    void makerequest(){
+        URL u = new URL();
+
+        UserData userf = new UserData();
+        username = userf.getUsername(getApplicationContext());
+        StringRequest s = new StringRequest(Request.Method.POST, u.url+"checkEligibleForPlacement.php", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                //Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
+                if(response.trim().equals("no")){
+                    hideItem();
+                }else{
+                    //Toast.makeText(getApplicationContext(),"no 2 time",Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //Toast.makeText(getApplicationContext(),"error",Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("uname", username);
+                return params;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(s);
     }
 }

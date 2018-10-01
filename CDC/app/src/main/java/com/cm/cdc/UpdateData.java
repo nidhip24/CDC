@@ -155,7 +155,7 @@ public class UpdateData extends AppCompatActivity {
                     Intent intent=new Intent(getApplicationContext(),Home.class);
                     startActivity(intent);
                 }else{
-                    Toast.makeText(getApplicationContext(),"Something went wrong try again later",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Seems like you may have already applied for it",Toast.LENGTH_SHORT).show();
                 }
                 hidepDialog();
             }
