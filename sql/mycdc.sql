@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 30, 2018 at 07:30 PM
+-- Generation Time: Oct 01, 2018 at 09:45 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -108,8 +108,6 @@ CREATE TABLE `updateplacement` (
 --
 
 INSERT INTO `updateplacement` (`id`, `pid`, `uid`, `designation`, `package`) VALUES
-(6, 1, 9, 'fuuiggi', 9868),
-(7, 1, 9, 'hshs', 6898),
 (8, 10, 9, 'nfne', 89495);
 
 -- --------------------------------------------------------
@@ -154,6 +152,7 @@ ALTER TABLE `placementdata`
 --
 ALTER TABLE `updateplacement`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `pid_2` (`pid`),
   ADD KEY `cid` (`uid`),
   ADD KEY `pid` (`pid`);
 
@@ -177,7 +176,7 @@ ALTER TABLE `placementdata`
 -- AUTO_INCREMENT for table `updateplacement`
 --
 ALTER TABLE `updateplacement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables
