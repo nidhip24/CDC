@@ -65,7 +65,7 @@ public class Signup2 extends AppCompatActivity {
     }
 
     public static boolean checkPercentage(String n){
-        int nn = Integer.parseInt(n);
+        float nn = Float.parseFloat(n);
         return (nn<=100);
     }
 }
