@@ -3,21 +3,24 @@ package com.cm.cdc;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.github.barteksc.pdfviewer.PDFView;
+import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
+import com.github.barteksc.pdfviewer.listener.OnPageChangeListener;
+import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
+import com.shockwave.pdfium.PdfDocument;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link History.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link History#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class History extends Fragment {
+public class History extends Fragment implements OnLoadCompleteListener, OnPageChangeListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -26,6 +29,10 @@ public class History extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    PDFView pdfView;
+    String pdfFileName;
+    Integer pageNumber = 0;
 
     private OnFragmentInteractionListener mListener;
 
@@ -88,6 +95,7 @@ public class History extends Fragment {
         mListener = null;
     }
 
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -102,4 +110,28 @@ public class History extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        pdfView = view.findViewById(R.id.pdfView);
+
+        displayFromAsset("history.pdf");
+    }
+
+    private void displayFromAsset(String assetFileName) {
+        pdfFileName = assetFileName;
+
+        pdfView.fromAsset(assetFileName).defaultPage(0).enableSwipe(true).swipeHorizontal(false).onPageChange(this).enableAnnotationRendering(true).onLoad(this).scrollHandle(new DefaultScrollHandle(getActivity())).load();
+    }
+    @Override
+    public void loadComplete(int nbPages) {
+        PdfDocument.Meta meta = pdfView.getDocumentMeta();
+    }
+
+    @Override
+    public void onPageChanged(int page, int pageCount) {
+        pageNumber = page;
+        //setTitle(String.format("%s %s / %s", pdfFileName, page + 1, pageCount));
+    }
+
 }

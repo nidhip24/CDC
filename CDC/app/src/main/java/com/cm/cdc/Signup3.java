@@ -61,9 +61,13 @@ public class Signup3 extends AppCompatActivity {
             public void onClick(View view) {
                 if(!uid.getText().toString().equals("") && !pass.getText().toString().equals("") && !cnfpass.getText().toString().equals("") &&!memno.getText().toString().equals("")){
                     if(pass.getText().toString().equals(cnfpass.getText().toString()))
-                        makeRequest();
+                        if(!uid.getText().toString().contains(" ")){
+                            makeRequest();
+                        }else{
+                            Toast.makeText(getApplicationContext(),"Username should not have any space",Toast.LENGTH_SHORT).show();
+                        }
                     else
-                        Toast.makeText(getApplicationContext(),"Password dosen't match",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Password doesn't match",Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(getApplicationContext(),"one of the field is empty",Toast.LENGTH_SHORT).show();
                 }
