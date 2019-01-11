@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2018 at 09:45 PM
+-- Generation Time: Jan 11, 2019 at 05:20 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -25,11 +25,40 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `document`
+--
+
+CREATE TABLE `document` (
+  `docid` varchar(20) NOT NULL,
+  `s1` varchar(20) NOT NULL,
+  `s2` varchar(20) NOT NULL,
+  `s3` varchar(20) NOT NULL,
+  `s4` varchar(20) NOT NULL,
+  `s5` varchar(20) NOT NULL,
+  `ssc` varchar(20) NOT NULL,
+  `hsc` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `document`
+--
+
+INSERT INTO `document` (`docid`, `s1`, `s2`, `s3`, `s4`, `s5`, `ssc`, `hsc`) VALUES
+('111', 'asd', 'asd', 'dd', 'dds', '', 'sds', 'dsd'),
+('112', 'sd', 'asd', 'asdd', 'sdsd', '', 'ass', 'ds'),
+('1905AE4203', '1905AE4203sem1.pdf', '1905AE4203sem2.pdf', '1905AE4203sem3.pdf', '1905AE4203sem4.pdf', '1905AE4203sem5.pdf', '1905AE4203ssc.pdf', '1905AE4203hsc.pdf'),
+('CFF0618B23', '', '', '', '', '', 'CFF0618B23ssc.pdf', ''),
+('EC42770E9A', '', '', '', '', '', 'EC42770E9Assc.pdf', '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `mycdc`
 --
 
 CREATE TABLE `mycdc` (
   `id` int(11) NOT NULL,
+  `docid` varchar(20) NOT NULL,
   `fname` varchar(40) NOT NULL,
   `rollno` int(10) NOT NULL,
   `grno` int(10) NOT NULL,
@@ -42,7 +71,7 @@ CREATE TABLE `mycdc` (
   `sem2` int(10) NOT NULL,
   `sem3` int(10) NOT NULL,
   `sem4` int(10) NOT NULL,
-  `uid` varchar(10) NOT NULL,
+  `uid` varchar(20) NOT NULL,
   `pass` varchar(10) NOT NULL,
   `cnfpass` varchar(10) NOT NULL,
   `memno` varchar(10) NOT NULL
@@ -52,10 +81,11 @@ CREATE TABLE `mycdc` (
 -- Dumping data for table `mycdc`
 --
 
-INSERT INTO `mycdc` (`id`, `fname`, `rollno`, `grno`, `phno`, `eid`, `clas`, `ssc`, `hsc`, `sem1`, `sem2`, `sem3`, `sem4`, `uid`, `pass`, `cnfpass`, `memno`) VALUES
-(7, 'sdas', 213, 212, 1213, 'dsadads', 'sdasd', 443, 23423, 3223, 23423, 23324, 234, 'aaa', 'aaa', '4sgdc', 'fdfs'),
-(8, '', 0, 0, 0, '', '', 0, 0, 0, 0, 0, 0, 'admin', 'admin', '', ''),
-(9, 'nk', 9898, 8989, 2147483647, 'xbbd@didj.com', 'fj', 59, 29, 89, 68, 98, 89, 'nk', 'nk', 'nk', 'hxhsdh');
+INSERT INTO `mycdc` (`id`, `docid`, `fname`, `rollno`, `grno`, `phno`, `eid`, `clas`, `ssc`, `hsc`, `sem1`, `sem2`, `sem3`, `sem4`, `uid`, `pass`, `cnfpass`, `memno`) VALUES
+(8, '111', '', 0, 0, 0, '', '', 0, 0, 0, 0, 0, 0, 'admin', 'admin', '', ''),
+(9, '112', 'nk', 9898, 8989, 2147483647, 'xbbd@didj.com', 'fj', 59, 29, 89, 68, 98, 89, 'nk', 'nk', 'nk', 'hxhsdh'),
+(16, 'CFF0618B23', 'ayc', 1234, 124597, 1122334455, 'hchsh@hs.zz', 'te', 1, 7, 8, 8, 8, 8, 'abc', 'abc', 'abc', 'ucjsj'),
+(17, 'EC42770E9A', 'hfhd', 6564, 846, 2147483647, 'chsh@dha.jd', 'hf', 85, 8, 88, 8, 8, 8, 'aaz', 'aaz', 'aaz', 'hfjd');
 
 --
 -- Triggers `mycdc`
@@ -85,9 +115,10 @@ CREATE TABLE `placementdata` (
 --
 
 INSERT INTO `placementdata` (`id`, `cname`, `info`, `link`, `status`, `date`) VALUES
-(1, 'LNT', 'Greetings to all, \r\n\r\nCareer Development Cell is here with big opportunity for our Current TY IT CS students.  \r\n\r\nHello friends. Pool campus by L & T Infotech is arranged on 19 and 20 July 2018 at Thanks College for current TYBSC cs and it students. It is only for colleges between Andheri and Bhayandar. We shall not entertain students coming from outside of this range. Please ask your eligible students to enroll at following link by tomorrow before 7 pm. \r\n\r\nStudents are requested to not to pass the link to NON CDC STUDENTS. \r\n\r\nAlso please both the Google forms before tomorrow 7 pm.\r\n\r\n\r\nSSC and HSC 50% \r\n\r\nSem 1-4 60%\r\n\r\n\r\nThank you \r\n\r\n- Mr Ashish Modi.', 'https://stackoverflow.com/questions/2201917/how-can-i-open-a-url-in-androids-web-browser-from-my-application', 'open', '2018-09-25 16:16:13'),
-(8, 'dffffdas', 'asdadasd\r\nsasd\r\nasd\r\nass\r\ndas\r\nda\r\ndas\r\ndas', 'https://www.w3schools.com/html/tryit.asp?filename=tryhtml_elem_textarea', 'open', '2018-09-30 10:18:37'),
-(10, 'kwhfwlhfbkwf', 'aojfwpkfwfev\nsf9snfosmclwc\nec\nepcmsmfwc', 'https://goo.gl/forms/mdq6KxVlOoBeQEZA3', 'close', '2018-09-30 10:22:30');
+(1, 'LNT', 'Greetings to all, \r\n\r\nCareer Development Cell is here with big opportunity for our Current TY IT CS students.  \r\n\r\nHello friends. Pool campus by L & T Infotech is arranged on 19 and 20 July 2018 at Thanks College for current TYBSC cs and it students. It is only for colleges between Andheri and Bhayandar. We shall not entertain students coming from outside of this range. Please ask your eligible students to enroll at following link by tomorrow before 7 pm. \r\n\r\nStudents are requested to not to pass the link to NON CDC STUDENTS. \r\n\r\nAlso please both the Google forms before tomorrow 7 pm.\r\n\r\n\r\nSSC and HSC 50% \r\n\r\nSem 1-4 60%\r\n\r\n\r\nThank you \r\n\r\n- Mr Ashish Modi.', 'https://stackoverflow.com/questions/2201917/how-can-i-open-a-url-in-androids-web-browser-from-my-application', 'close', '2018-09-25 16:16:13'),
+(8, 'dffffdas', 'asdadasd\r\nsasd\r\nasd\r\nass\r\ndas\r\nda\r\ndas\r\ndas', 'https://www.w3schools.com/html/tryit.asp?filename=tryhtml_elem_textarea', 'close', '2018-09-30 10:18:37'),
+(10, 'kwhfwlhfbkwf', 'aojfwpkfwfev\nsf9snfosmclwc\nec\nepcmsmfwc', 'https://goo.gl/forms/mdq6KxVlOoBeQEZA3', 'close', '2018-09-30 10:22:30'),
+(11, 'nihip', 'chhand\npehchan\nc\nvmsnf\nd\n\n\n\nchdhvjsjjjâ‚¹^&â‚¹&&&â‚¹+\ncjdjjcms\ncsudj', 'http://google.com', 'open', '2019-01-11 14:09:07');
 
 -- --------------------------------------------------------
 
@@ -108,7 +139,9 @@ CREATE TABLE `updateplacement` (
 --
 
 INSERT INTO `updateplacement` (`id`, `pid`, `uid`, `designation`, `package`) VALUES
-(8, 10, 9, 'nfne', 89495);
+(8, 10, 9, 'nfne', 89495),
+(9, 8, 16, 'fucking CEO', 999999999),
+(10, 1, 16, 'intern', 9797946);
 
 -- --------------------------------------------------------
 
@@ -117,7 +150,7 @@ INSERT INTO `updateplacement` (`id`, `pid`, `uid`, `designation`, `package`) VAL
 --
 
 CREATE TABLE `user_privilege` (
-  `username` varchar(10) NOT NULL,
+  `username` varchar(20) NOT NULL,
   `type` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -128,18 +161,30 @@ CREATE TABLE `user_privilege` (
 INSERT INTO `user_privilege` (`username`, `type`) VALUES
 ('aaa', 'user'),
 ('admin', 'admin'),
-('nk', 'user');
+('nk', 'admin'),
+('nkk', 'user'),
+('12edre', 'user'),
+('abc', 'user'),
+('abc', 'user'),
+('aaz', 'user');
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `document`
+--
+ALTER TABLE `document`
+  ADD PRIMARY KEY (`docid`);
+
+--
 -- Indexes for table `mycdc`
 --
 ALTER TABLE `mycdc`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `uid` (`uid`);
+  ADD UNIQUE KEY `uid` (`uid`),
+  ADD KEY `docid` (`docid`);
 
 --
 -- Indexes for table `placementdata`
@@ -164,23 +209,29 @@ ALTER TABLE `updateplacement`
 -- AUTO_INCREMENT for table `mycdc`
 --
 ALTER TABLE `mycdc`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `placementdata`
 --
 ALTER TABLE `placementdata`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `updateplacement`
 --
 ALTER TABLE `updateplacement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `mycdc`
+--
+ALTER TABLE `mycdc`
+  ADD CONSTRAINT `mycdc_ibfk_1` FOREIGN KEY (`docid`) REFERENCES `document` (`docid`);
 
 --
 -- Constraints for table `updateplacement`
