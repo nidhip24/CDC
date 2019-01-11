@@ -455,6 +455,7 @@ public class Signup21 extends AppCompatActivity {
             } else {
                 //Displaying another toast if permission is not granted
                 Toast.makeText(this, "Oops you just denied the permission", Toast.LENGTH_LONG).show();
+                requestStoragePermission();
             }
         }
     }
