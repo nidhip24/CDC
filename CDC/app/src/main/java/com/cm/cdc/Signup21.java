@@ -232,7 +232,7 @@ public class Signup21 extends AppCompatActivity {
                     i.putExtra("grno",grno);
                     i.putExtra("phno",phno);
                     i.putExtra("eid",eid);
-                    i.putExtra("docid",s);iu
+                    i.putExtra("docid",s);
                     startActivity(i);
                 }else{
                     Toast.makeText(getApplicationContext(),"Looks like some of the documents are not uploaded",Toast.LENGTH_SHORT).show();
