@@ -146,8 +146,8 @@ public class Placement_company_list extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d("PlacementACtivity", "Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),error.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"NO PLACEMENTS available right now", Toast.LENGTH_SHORT).show();
                 // hide the progress dialog
                 hidepDialog();
             }

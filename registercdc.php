@@ -27,10 +27,11 @@ $uid = $_POST["uid"];
 $pass = $_POST["pass"];
 $cnfpass = $_POST["cnfpass"];
 $memno = $_POST["membership"];
+$docid = $_POST["docid"];
 
 
 
-$sql = "INSERT INTO `mycdc`(`fname`, `rollno`, `grno`, `phno`, `eid`, `clas`, `ssc`, `hsc`, `sem1`, `sem2`, `sem3`, `sem4`, `uid`, `pass`, `cnfpass`, `memno`) VALUES ('".$fname."','".$rollno."','".$grno."','".$phno."','".$eid."','".$clas."','".$ssc."','".$hsc."','".$sem1."','".$sem2."','".$sem3."','".$sem4."','".$uid."','".$pass."','".$cnfpass."','".$memno."')";
+$sql = "INSERT INTO `mycdc`(`docid`,`fname`, `rollno`, `grno`, `phno`, `eid`, `clas`, `ssc`, `hsc`, `sem1`, `sem2`, `sem3`, `sem4`, `uid`, `pass`, `cnfpass`, `memno`) VALUES ('".$docid."','".$fname."','".$rollno."','".$grno."','".$phno."','".$eid."','".$clas."','".$ssc."','".$hsc."','".$sem1."','".$sem2."','".$sem3."','".$sem4."','".$uid."','".$pass."','".$cnfpass."','".$memno."')";
 
 if ($conn->query($sql) === TRUE) {
     echo "Done";

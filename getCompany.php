@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 
 $sql = "SELECT id,cname,status FROM `placementdata`";
 $result = $conn->query($sql);
-
+$str = null;
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) { 
@@ -25,7 +25,11 @@ if ($result->num_rows > 0) {
 	    	);
     	}
     }
-    echo json_encode($str);
+    if($str !=null){
+        echo json_encode($str);
+    }else{
+        echo "0";
+    }
 }else{
 	echo "0";
 }

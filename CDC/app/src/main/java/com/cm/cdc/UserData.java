@@ -30,7 +30,7 @@ public class UserData {
         return user;
     }
 
-    void deleteUser(Context c){
+    public void deleteUser(Context c){
         SharedPreferences.Editor editor = c.getSharedPreferences(PREF, MODE_PRIVATE).edit();
         editor.remove("username");
         editor.apply();

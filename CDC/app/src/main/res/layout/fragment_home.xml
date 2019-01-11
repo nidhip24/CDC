@@ -18,7 +18,6 @@
             android:layout_height="0dp"
             android:focusable="true"
             android:focusableInTouchMode="true">
-
         </View>
 
         <com.smarteist.autoimageslider.SliderLayout

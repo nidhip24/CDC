@@ -40,7 +40,7 @@ public class Signup2 extends AppCompatActivity {
             public void onClick(View view) {
                 if (!clas.getText().toString().equals("") && !ssc.getText().toString().equals("") && !hsc.getText().toString().equals("") &&!sem1.getText().toString().equals("") && !sem2.getText().toString().equals("") &&!sem3.getText().toString().equals("") && !sem4.getText().toString().equals("")){
                     if(checkPercentage(ssc.getText().toString()) && checkPercentage(hsc.getText().toString()) && checkPercentage(sem1.getText().toString()) && checkPercentage(sem2.getText().toString()) && checkPercentage(sem3.getText().toString()) && checkPercentage(sem4.getText().toString()) ){
-                        Intent i = new Intent(getApplicationContext(),Signup3.class);
+                        Intent i = new Intent(getApplicationContext(),Signup21.class);
                         i.putExtra("class",clas.getText().toString());
                         i.putExtra("ssc",ssc.getText().toString());
                         i.putExtra("hsc",hsc.getText().toString());

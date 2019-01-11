@@ -5,7 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".AppController"
@@ -19,10 +19,10 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".Signup" />
         <activity android:name=".Signup2" />
         <activity android:name=".Signup3" />
@@ -35,7 +35,8 @@
         <activity android:name=".admin.AdminC" />
         <activity android:name=".admin.AdminPlacement" />
         <activity android:name=".admin.AddPlacement" />
-        <activity android:name=".UpdateData"></activity>
+        <activity android:name=".UpdateData" />
+        <activity android:name=".Signup21"></activity>
     </application>
 
 </manifest>

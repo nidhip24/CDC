@@ -20,8 +20,19 @@
         android:id="@+id/mdelplacement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/maddplacement"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="43dp"
+        android:text="delete placement " />
+
+    <Button
+        android:id="@+id/mdownload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mdelplacement"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="207dp"
-        android:text="delete placement " />
+        android:layout_marginTop="44dp"
+        android:layout_marginBottom="115dp"
+        android:text="download placement data" />
 </RelativeLayout>

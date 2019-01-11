@@ -22,7 +22,7 @@ public class Signup3 extends AppCompatActivity {
 
     EditText uid,pass, cnfpass ,memno ;
     Button reg3;
-    String fname,rollno,grno,phno,eid,clas,ssc,hsc,sem1,sem2,sem3,sem4;
+    String fname,rollno,grno,phno,eid,clas,ssc,hsc,sem1,sem2,sem3,sem4,docid;
 
     // Progress dialog
     private ProgressDialog pDialog;
@@ -51,6 +51,7 @@ public class Signup3 extends AppCompatActivity {
         sem2 = i.getStringExtra("sem2");
         sem3 = i.getStringExtra("sem3");
         sem4 = i.getStringExtra("sem4");
+        docid = i.getStringExtra("docid");
 
         pDialog = new ProgressDialog(this);
         pDialog.setMessage("Please wait...");
@@ -116,6 +117,7 @@ public class Signup3 extends AppCompatActivity {
                 params.put("sem2", sem2);
                 params.put("sem3", sem3);
                 params.put("sem4", sem4);
+                params.put("docid", docid);
 
                 return params;
 
