@@ -34,6 +34,7 @@ public class Placement_company_list extends AppCompatActivity {
     ArrayList<String> idarray = new ArrayList<String>();
     ArrayAdapter adapter;
     int mode=-1;
+    int flag = -1;
 
     // Progress dialog
     private ProgressDialog pDialog;
@@ -59,13 +60,10 @@ public class Placement_company_list extends AppCompatActivity {
         l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(),mode+"",Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(),array.get(position),Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),mode+"",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),array.get(position),Toast.LENGTH_SHORT).show();
                 if(mode!=-1 && mode==1){
-                    Intent i = new Intent(getApplicationContext(),UpdateData.class);
-                    i.putExtra("company-id",idarray.get(position));
-                    i.putExtra("company-name",array.get(position));
-                    startActivity(i);
+                    checkCompany(idarray.get(position),position);
                 }else if(mode!=-1 && mode==2){
                     String lid = idarray.get(position);
                     deletePlacement(lid);
@@ -77,6 +75,46 @@ public class Placement_company_list extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void checkCompany(final String id,final int pos){
+        final URL u = new URL();
+
+        flag = -1;
+        UserData userf = new UserData();
+        final String username = userf.getUsername(getApplicationContext());
+        StringRequest s = new StringRequest(Request.Method.POST, u.url+"checkPlacementById.php", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                //Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
+                if(response.trim().equals("go")){
+
+                    Intent i = new Intent(getApplicationContext(),UpdateData.class);
+                    i.putExtra("company-id",idarray.get(pos));
+                    i.putExtra("company-name",array.get(pos));
+                    startActivity(i);
+                    //hideItem();
+                    //Toast.makeText(getApplicationContext(),"no e",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getApplicationContext(),"You Already Updated",Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                //Toast.makeText(getApplicationContext(),"error",Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("uname", username);
+                params.put("id", id);
+                return params;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(s);
     }
 
     private  void deletePlacement(final String lid){

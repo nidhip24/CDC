@@ -4,6 +4,9 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.Selection;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -70,6 +73,30 @@ public class UpdateData extends AppCompatActivity {
                     makerequest();
                 }else{
                     Toast.makeText(getApplicationContext(),"One of the field is empty",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        packsal.setText("\u20B9");
+        Selection.setSelection(packsal.getText(), packsal.getText().length());
+
+        packsal.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(!s.toString().startsWith("\u20B9")){
+                    packsal.setText("\u20B9");
+                    Selection.setSelection(packsal.getText(), packsal.getText().length());
+
                 }
             }
         });
@@ -162,7 +189,7 @@ public class UpdateData extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),"error",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"error"+error,Toast.LENGTH_SHORT).show();
                 hidepDialog();
             }
         }){
@@ -172,7 +199,9 @@ public class UpdateData extends AppCompatActivity {
                 params.put("userID", uid);
                 params.put("pid",comapanyID);
                 params.put("designation",des.getText().toString().trim());
-                params.put("package",packsal.getText().toString().trim());
+                StringBuilder sb = new StringBuilder(packsal.getText().toString().trim());
+                sb.deleteCharAt(0);
+                params.put("package", String.valueOf(sb));
                 return params;
 
             }

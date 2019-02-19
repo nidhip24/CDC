@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -42,7 +43,8 @@ public class Signup21 extends AppCompatActivity {
 
     protected String s;
 
-    String fname,rollno,grno,phno,eid,clas,Mssc,Mhsc,sem1,sem2,sem3,sem4;
+    String fname,rollno,grno,phno,eid,clas,Mssc,Mhsc,sem1,sem2,sem3,sem4,sem5;
+    TextView ss2,ss3,ss4,ss5;
 
 
     @Override
@@ -64,6 +66,12 @@ public class Signup21 extends AppCompatActivity {
         s5 = findViewById(R.id.mSem5);
         next = findViewById(R.id.mNext);
 
+        //TextView
+        ss2 = findViewById(R.id.ss2);
+        ss3 = findViewById(R.id.ss3);
+        ss4 = findViewById(R.id.ss4);
+        ss5 = findViewById(R.id.ss5);
+
         Intent i = getIntent();
         fname = i.getStringExtra("fname");
         rollno = i.getStringExtra("rollno");
@@ -77,6 +85,52 @@ public class Signup21 extends AppCompatActivity {
         sem2 = i.getStringExtra("sem2");
         sem3 = i.getStringExtra("sem3");
         sem4 = i.getStringExtra("sem4");
+        sem5 = i.getStringExtra("sem5");
+
+
+        if(sem2.equals("-1")){
+            s2.setVisibility(View.GONE);
+            s3.setVisibility(View.GONE);
+            s4.setVisibility(View.GONE);
+            s5.setVisibility(View.GONE);
+
+            ss2.setVisibility(View.GONE);
+            ss3.setVisibility(View.GONE);
+            ss4.setVisibility(View.GONE);
+            ss5.setVisibility(View.GONE);
+
+            pS2 = 1;
+            pS3 = 1;
+            pS4 = 1;
+            pS5 = 1;
+        }else if(sem3.equals("-1")){
+            s3.setVisibility(View.GONE);
+            s4.setVisibility(View.GONE);
+            s5.setVisibility(View.GONE);
+
+            ss3.setVisibility(View.GONE);
+            ss4.setVisibility(View.GONE);
+            ss5.setVisibility(View.GONE);
+
+            pS3 = 1;
+            pS4 = 1;
+            pS5 = 1;
+        }else if(sem4.equals("-1")){
+            s4.setVisibility(View.GONE);
+            s5.setVisibility(View.GONE);
+
+            ss4.setVisibility(View.GONE);
+            ss5.setVisibility(View.GONE);
+
+            pS4 = 1;
+            pS5 = 1;
+        }else if(sem5.equals("-1")){
+            s5.setVisibility(View.GONE);
+
+            ss5.setVisibility(View.GONE);
+
+            pS5 = 1;
+        }
 
         //generating Unique ID
         s = createID();
@@ -227,6 +281,7 @@ public class Signup21 extends AppCompatActivity {
                     i.putExtra("sem2",sem2);
                     i.putExtra("sem3",sem3);
                     i.putExtra("sem4",sem4);
+                    i.putExtra("sem5",sem5);
                     i.putExtra("fname",fname);
                     i.putExtra("rollno",rollno);
                     i.putExtra("grno",grno);

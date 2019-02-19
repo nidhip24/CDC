@@ -1,6 +1,7 @@
 package com.cm.cdc;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -84,51 +86,77 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         final ImageButton imgbtn = getView().findViewById(R.id.img_v2);
         final ImageButton imgbtn2 = getView().findViewById(R.id.img_v1);
+
         sliderLayout = getView().findViewById(R.id.imageSlider);
         info = getView().findViewById(R.id.homeinfo);
-        v1 = getView().findViewById(R.id.vid1);
-        v2 = getView().findViewById(R.id.vid2);
+//        v1 = getView().findViewById(R.id.vid1);
+//        v2 = getView().findViewById(R.id.vid2);
 
         ScrollView ss = getView().findViewById(R.id.scrollview);
-
-
-        info.setText(Html.fromHtml(getString(R.string.home_data)));
-
-        uri = Uri.parse("android.resource://"+getActivity().getPackageName()+"/"+R.raw.vidone);
-        uri2 = Uri.parse("android.resource://"+getActivity().getPackageName()+"/"+R.raw.vidtwo);
-
-        v2.setVideoURI(uri2);
-        v1.setVideoURI(uri);
 
         imgbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!v2.isPlaying()){
-                    Toast.makeText(getActivity(),"aa3a2",Toast.LENGTH_SHORT).show();
-                    v2.start();
-                    imgbtn.setImageResource(R.drawable.ic_media_pause);
-                }else{
-                    Toast.makeText(getActivity(),"aa4a",Toast.LENGTH_SHORT).show();
-                    v2.pause();
-                    imgbtn.setImageResource(R.drawable.ic_media_play);
-                }
+                Intent i = new Intent(getActivity(),VideoPlay.class);
+                i.putExtra("code",0);
+                startActivity(i);
             }
         });
 
         imgbtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!v1.isPlaying()){
-                    Toast.makeText(getActivity(),"aa3a1",Toast.LENGTH_SHORT).show();
-                    v1.start();
-                    imgbtn2.setImageResource(R.drawable.ic_media_pause);
-                }else{
-                    Toast.makeText(getActivity(),"aa4a",Toast.LENGTH_SHORT).show();
-                    v1.pause();
-                    imgbtn2.setImageResource(R.drawable.ic_media_play);
-                }
+                Intent i = new Intent(getActivity(),VideoPlay.class);
+                i.putExtra("code",1);
+                startActivity(i);
             }
         });
+        info.setText(Html.fromHtml(getString(R.string.home_data)));
+
+//        uri = Uri.parse("android.resource://"+getActivity().getPackageName()+"/"+R.raw.vidone);
+        uri2 = Uri.parse("android.resource://"+getActivity().getPackageName()+"/"+R.raw.vidtwo);
+//
+//        v2.setVideoURI(uri2);
+//        v1.setVideoURI(uri);
+//
+//        MediaController mediaController = new MediaController(getContext());
+//        mediaController.setAnchorView(v2);
+//        v2.setMediaController(mediaController);
+//        //v2.start();
+//
+//        MediaController mediaController2 = new MediaController(getContext());
+//        mediaController2.setAnchorView(v1);
+//        v1.setMediaController(mediaController2);
+        //v1.start();
+//        imgbtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(!v2.isPlaying()){
+//                    //Toast.makeText(getActivity(),"aa3a2",Toast.LENGTH_SHORT).show();
+//                    v2.start();
+//                    imgbtn.setImageResource(R.drawable.ic_media_pause);
+//                }else{
+//                    //Toast.makeText(getActivity(),"aa4a",Toast.LENGTH_SHORT).show();
+//                    v2.pause();
+//                    imgbtn.setImageResource(R.drawable.ic_media_play);
+//                }
+//            }
+//        });
+//
+//        imgbtn2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(!v1.isPlaying()){
+//                    Toast.makeText(getActivity(),"aa3a1",Toast.LENGTH_SHORT).show();
+//                    v1.start();
+//                    imgbtn2.setImageResource(R.drawable.ic_media_pause);
+//                }else{
+//                    Toast.makeText(getActivity(),"aa4a",Toast.LENGTH_SHORT).show();
+//                    v1.pause();
+//                    imgbtn2.setImageResource(R.drawable.ic_media_play);
+//                }
+//            }
+//        });
 
         sliderLayout.setIndicatorAnimation(SliderLayout.Animations.FILL); //set indicator animation by using SliderLayout.Animations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
         sliderLayout.setScrollTimeInSec(1); //set scroll delay in seconds :

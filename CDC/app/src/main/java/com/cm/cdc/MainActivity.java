@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent=new Intent(getApplicationContext(),AdminC.class);
                     startActivity(intent);
                 }else{
-                    Toast.makeText(getApplicationContext(),"Invalid username or password",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Invalid username or or password",Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {

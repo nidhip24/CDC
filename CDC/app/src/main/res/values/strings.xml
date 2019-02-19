@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CDC</string>
+    <string name="app_name">Career Development Cell</string>
     <string name="title_activity_home">Home</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -21,5 +21,13 @@
         <p><b>NKCDC UDAAN 2018 </b></p>
         <p>‘UDAAN’ is the corporate festival of Career Development Cell growing since its establishment. Udaan is a three-day-fest wherein we conduct various competitions which focuses to enhance skills of students in the field of Management and Career Development. Along with competitions we also conduct Seminars by industry professionals</p>
         ]]>
+
     </string>
+    <string-array name="sem">
+        <item>sem 1</item>
+        <item>sem 2</item>
+        <item>sem 3</item>
+        <item>sem 4</item>
+        <item>sem 5</item>
+    </string-array>
 </resources>

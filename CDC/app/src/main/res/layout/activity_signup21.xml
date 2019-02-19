@@ -102,7 +102,7 @@
                 app:layout_constraintGuide_begin="86dp" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/ss2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -120,18 +120,18 @@
                 android:layout_marginEnd="166dp"
                 android:text="Click to upload"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView"
+                app:layout_constraintStart_toEndOf="@+id/ss2"
                 app:layout_constraintTop_toBottomOf="@+id/mSem1" />
 
             <TextView
-                android:id="@+id/textView21"
+                android:id="@+id/ss3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="44dp"
                 android:text="SEM 3"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/ss2" />
 
             <Button
                 android:id="@+id/mSem3"
@@ -142,18 +142,18 @@
                 android:layout_marginEnd="164dp"
                 android:text="CLICK TO upload"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView21"
+                app:layout_constraintStart_toEndOf="@+id/ss3"
                 app:layout_constraintTop_toBottomOf="@+id/mSem2" />
 
-            <TextView
-                android:id="@+id/textView22"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="44dp"
-                android:text="SEM 4"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView21" />
+        <TextView
+            android:id="@+id/ss4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="36dp"
+            android:text="SEM 4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ss3" />
 
             <Button
                 android:id="@+id/mSem4"
@@ -164,7 +164,7 @@
                 android:layout_marginEnd="164dp"
                 android:text="click to upload"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView22"
+                app:layout_constraintStart_toEndOf="@+id/ss4"
                 app:layout_constraintTop_toBottomOf="@+id/mSem3" />
 
             <Button
@@ -179,14 +179,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/mSem5" />
 
             <TextView
-                android:id="@+id/textView20"
+                android:id="@+id/ss5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="43dp"
                 android:text="SEM 5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView22" />
+                app:layout_constraintTop_toBottomOf="@+id/ss4" />
 
             <Button
                 android:id="@+id/mSem5"
@@ -197,7 +197,7 @@
                 android:layout_marginEnd="163dp"
                 android:text="click to upload"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView20"
+                app:layout_constraintStart_toEndOf="@+id/ss5"
                 app:layout_constraintTop_toBottomOf="@+id/mSem4" />
     </android.support.constraint.ConstraintLayout>
 

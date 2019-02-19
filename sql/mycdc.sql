@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 11, 2019 at 05:20 PM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.10
+-- Generation Time: Feb 19, 2019 at 06:59 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -47,8 +47,12 @@ INSERT INTO `document` (`docid`, `s1`, `s2`, `s3`, `s4`, `s5`, `ssc`, `hsc`) VAL
 ('111', 'asd', 'asd', 'dd', 'dds', '', 'sds', 'dsd'),
 ('112', 'sd', 'asd', 'asdd', 'sdsd', '', 'ass', 'ds'),
 ('1905AE4203', '1905AE4203sem1.pdf', '1905AE4203sem2.pdf', '1905AE4203sem3.pdf', '1905AE4203sem4.pdf', '1905AE4203sem5.pdf', '1905AE4203ssc.pdf', '1905AE4203hsc.pdf'),
+('4BEB29D790', '4BEB29D790sem1.pdf', '', '', '', '', '4BEB29D790ssc.pdf', '4BEB29D790hsc.pdf'),
+('B13F8D57F3', '', '', '', '', '', 'B13F8D57F3ssc.pdf', ''),
 ('CFF0618B23', '', '', '', '', '', 'CFF0618B23ssc.pdf', ''),
-('EC42770E9A', '', '', '', '', '', 'EC42770E9Assc.pdf', '');
+('DC566F29DB', 'DC566F29DBsem1.pdf', '', '', '', '', 'DC566F29DBssc.pdf', 'DC566F29DBhsc.pdf'),
+('EC42770E9A', '', '', '', '', '', 'EC42770E9Assc.pdf', ''),
+('EF9E2B12B9', 'EF9E2B12B9sem1.pdf', 'EF9E2B12B9sem2.pdf', 'EF9E2B12B9sem3.pdf', 'EF9E2B12B9sem4.pdf', 'EF9E2B12B9sem5.pdf', 'EF9E2B12B9ssc.pdf', 'EF9E2B12B9hsc.pdf');
 
 -- --------------------------------------------------------
 
@@ -71,21 +75,23 @@ CREATE TABLE `mycdc` (
   `sem2` int(10) NOT NULL,
   `sem3` int(10) NOT NULL,
   `sem4` int(10) NOT NULL,
+  `sem5` int(10) NOT NULL,
   `uid` varchar(20) NOT NULL,
   `pass` varchar(10) NOT NULL,
-  `cnfpass` varchar(10) NOT NULL,
-  `memno` varchar(10) NOT NULL
+  `cnfpass` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `mycdc`
 --
 
-INSERT INTO `mycdc` (`id`, `docid`, `fname`, `rollno`, `grno`, `phno`, `eid`, `clas`, `ssc`, `hsc`, `sem1`, `sem2`, `sem3`, `sem4`, `uid`, `pass`, `cnfpass`, `memno`) VALUES
-(8, '111', '', 0, 0, 0, '', '', 0, 0, 0, 0, 0, 0, 'admin', 'admin', '', ''),
-(9, '112', 'nk', 9898, 8989, 2147483647, 'xbbd@didj.com', 'fj', 59, 29, 89, 68, 98, 89, 'nk', 'nk', 'nk', 'hxhsdh'),
-(16, 'CFF0618B23', 'ayc', 1234, 124597, 1122334455, 'hchsh@hs.zz', 'te', 1, 7, 8, 8, 8, 8, 'abc', 'abc', 'abc', 'ucjsj'),
-(17, 'EC42770E9A', 'hfhd', 6564, 846, 2147483647, 'chsh@dha.jd', 'hf', 85, 8, 88, 8, 8, 8, 'aaz', 'aaz', 'aaz', 'hfjd');
+INSERT INTO `mycdc` (`id`, `docid`, `fname`, `rollno`, `grno`, `phno`, `eid`, `clas`, `ssc`, `hsc`, `sem1`, `sem2`, `sem3`, `sem4`, `sem5`, `uid`, `pass`, `cnfpass`) VALUES
+(8, '111', '', 0, 0, 0, '', '', 0, 0, 0, 0, 0, 0, 0, 'admin', 'admin', ''),
+(9, '112', 'nk', 9898, 8989, 2147483647, 'xbbd@didj.com', 'fj', 59, 29, 89, 68, 98, 89, 0, 'nk', 'nk', 'nk'),
+(16, 'CFF0618B23', 'ayc', 1234, 124597, 1122334455, 'hchsh@hs.zz', 'te', 1, 7, 8, 8, 8, 8, 0, 'abc', 'abc', 'abc'),
+(17, 'EC42770E9A', 'hfhd', 6564, 846, 2147483647, 'chsh@dha.jd', 'hf', 85, 8, 88, 8, 8, 8, 0, 'aaz', 'aaz', 'aaz'),
+(18, 'DC566F29DB', 'coco', 1234, 12345, 1234567890, 'hchs@ucs.c', 'gu', 69, 99, 99, -1, -1, -1, -1, 'Knidhip_24', 'Knidhip_24', 'Knidhip_24'),
+(19, '4BEB29D790', 'lambu', 6656, 65656, 2147483647, 'nidhipkathiriya@gmail.com', 'BE6', 80, 89, 89, -1, -1, -1, -1, 'Nnidhip_24', 'Nnidhip_24', 'Nnidhip_24');
 
 --
 -- Triggers `mycdc`
@@ -118,7 +124,8 @@ INSERT INTO `placementdata` (`id`, `cname`, `info`, `link`, `status`, `date`) VA
 (1, 'LNT', 'Greetings to all, \r\n\r\nCareer Development Cell is here with big opportunity for our Current TY IT CS students.  \r\n\r\nHello friends. Pool campus by L & T Infotech is arranged on 19 and 20 July 2018 at Thanks College for current TYBSC cs and it students. It is only for colleges between Andheri and Bhayandar. We shall not entertain students coming from outside of this range. Please ask your eligible students to enroll at following link by tomorrow before 7 pm. \r\n\r\nStudents are requested to not to pass the link to NON CDC STUDENTS. \r\n\r\nAlso please both the Google forms before tomorrow 7 pm.\r\n\r\n\r\nSSC and HSC 50% \r\n\r\nSem 1-4 60%\r\n\r\n\r\nThank you \r\n\r\n- Mr Ashish Modi.', 'https://stackoverflow.com/questions/2201917/how-can-i-open-a-url-in-androids-web-browser-from-my-application', 'close', '2018-09-25 16:16:13'),
 (8, 'dffffdas', 'asdadasd\r\nsasd\r\nasd\r\nass\r\ndas\r\nda\r\ndas\r\ndas', 'https://www.w3schools.com/html/tryit.asp?filename=tryhtml_elem_textarea', 'close', '2018-09-30 10:18:37'),
 (10, 'kwhfwlhfbkwf', 'aojfwpkfwfev\nsf9snfosmclwc\nec\nepcmsmfwc', 'https://goo.gl/forms/mdq6KxVlOoBeQEZA3', 'close', '2018-09-30 10:22:30'),
-(11, 'nihip', 'chhand\npehchan\nc\nvmsnf\nd\n\n\n\nchdhvjsjjjâ‚¹^&â‚¹&&&â‚¹+\ncjdjjcms\ncsudj', 'http://google.com', 'open', '2019-01-11 14:09:07');
+(11, 'nihip', 'chhand\npehchan\nc\nvmsnf\nd\n\n\n\nchdhvjsjjjâ‚¹^&â‚¹&&&â‚¹+\ncjdjjcms\ncsudj', 'http://google.com', 'open', '2019-01-11 14:09:07'),
+(12, 'NK', 'their\ntt\nt\n5\n\n5\n\n\nt\n\ntddjdd\nd\nd', 'gzhzhzhz', 'open', '2019-02-19 16:17:54');
 
 -- --------------------------------------------------------
 
@@ -139,9 +146,7 @@ CREATE TABLE `updateplacement` (
 --
 
 INSERT INTO `updateplacement` (`id`, `pid`, `uid`, `designation`, `package`) VALUES
-(8, 10, 9, 'nfne', 89495),
-(9, 8, 16, 'fucking CEO', 999999999),
-(10, 1, 16, 'intern', 9797946);
+(9, 8, 16, 'fucking CEO', 999999999);
 
 -- --------------------------------------------------------
 
@@ -166,7 +171,9 @@ INSERT INTO `user_privilege` (`username`, `type`) VALUES
 ('12edre', 'user'),
 ('abc', 'user'),
 ('abc', 'user'),
-('aaz', 'user');
+('aaz', 'user'),
+('Knidhip_24', 'user'),
+('Nnidhip_24', 'user');
 
 --
 -- Indexes for dumped tables
@@ -209,19 +216,19 @@ ALTER TABLE `updateplacement`
 -- AUTO_INCREMENT for table `mycdc`
 --
 ALTER TABLE `mycdc`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `placementdata`
 --
 ALTER TABLE `placementdata`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `updateplacement`
 --
 ALTER TABLE `updateplacement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
