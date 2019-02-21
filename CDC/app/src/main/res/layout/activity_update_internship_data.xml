@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    tools:context=".UpdateInternshipData">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="Update Information"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView23"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="45dp"
+            android:text="Name" />
+
+        <TextView
+            android:id="@+id/mfname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textView25"
+            android:layout_marginStart="131dp"
+            android:layout_toEndOf="@+id/textView25"
+            android:text="Nidhip kathiriya" />
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView25"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="24dp"
+            android:text="GR No" />
+
+        <TextView
+            android:id="@+id/mgrno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mfname"
+            android:layout_marginStart="128dp"
+            android:layout_marginTop="24dp"
+            android:layout_toEndOf="@+id/textView27"
+            android:text="2242" />
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView27"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="24dp"
+            android:text="Roll No" />
+
+        <TextView
+            android:id="@+id/mrollno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mgrno"
+            android:layout_marginStart="125dp"
+            android:layout_marginTop="24dp"
+            android:layout_toEndOf="@+id/textView30"
+            android:text="34242" />
+
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView30"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="24dp"
+            android:text="Class" />
+
+        <TextView
+            android:id="@+id/mclass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mrollno"
+            android:layout_marginStart="134dp"
+            android:layout_marginTop="24dp"
+            android:layout_toEndOf="@+id/textView32"
+            android:text="TE6" />
+
+        <TextView
+            android:id="@+id/textView34"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView32"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="24dp"
+            android:text="Company Name" />
+
+        <TextView
+            android:id="@+id/mcname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mclass"
+            android:layout_marginStart="69dp"
+            android:layout_marginTop="24dp"
+            android:layout_toEndOf="@+id/textView34"
+            android:text="LNT" />
+
+        <TextView
+            android:id="@+id/textView36"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView38"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="35dp"
+            android:text="Upload Offer Letter" />
+
+        <TextView
+            android:id="@+id/textView38"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView34"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="25dp"
+            android:text="Feedback" />
+
+        <EditText
+            android:id="@+id/mfeedback"
+            android:layout_width="199dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mcname"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="109dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="3dp"
+            android:layout_toEndOf="@+id/textView38"
+            android:ems="10"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/mupdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mofferletter"
+            android:layout_marginTop="49dp"
+            android:layout_centerHorizontal="true"
+            android:text="update" />
+
+        <Button
+            android:id="@+id/mofferletter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mfeedback"
+            android:layout_marginStart="51dp"
+            android:layout_marginTop="9dp"
+            android:layout_toEndOf="@+id/textView36"
+            android:text="upload" />
+    </RelativeLayout>
+</RelativeLayout>

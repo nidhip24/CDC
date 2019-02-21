@@ -14,20 +14,35 @@
             android:id="@+id/nav_team"
             android:title="Team" />
         <item
-            android:id="@+id/nav_event"
-            android:title="Event" />
-        <item
             android:id="@+id/nav_intern"
             android:title="Internship" />
         <item
             android:id="@+id/nav_placement"
             android:title="Placement" />
-        <item
-            android:id="@+id/nav_feedback"
-            android:title="Feedback" />
-        <item
-            android:id="@+id/nav_logout"
-            android:title="Logout" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item android:title="Event">
+            <menu>
+                <item
+                    android:id="@+id/nav_mem_lane"
+                    android:title="Memory Lane" />
+                <item
+                    android:id="@+id/nav_future"
+                    android:title="Future Events" />
+            </menu>
+        </item>
+    </group>
+    <group android:checkableBehavior="single">
+        <item android:title="Others">
+            <menu>
+                <item
+                    android:id="@+id/nav_feedback"
+                    android:title="Feedback" />
+                <item
+                    android:id="@+id/nav_logout"
+                    android:title="Logout" />
+            </menu>
+        </item>
     </group>
 
 </menu>

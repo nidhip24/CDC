@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
-    tools:context=".admin.AddPlacement">
+    android:padding="10dp"
+    tools:context=".admin.AddInternship">
 
     <EditText
         android:id="@+id/mcname"
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:text="Fill Placement Detail"
+        android:text="Fill Internship Detail"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
 
 </RelativeLayout>

@@ -4,33 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".admin.AdminC">
+    tools:context=".admin.AdminIntern">
+
 
     <Button
-        android:id="@+id/mplacement"
+        android:id="@+id/minternadd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="87dp"
-        android:text="placement" />
+        android:layout_marginTop="135dp"
+        android:text="Add internship" />
 
     <Button
-        android:id="@+id/logout"
+        android:id="@+id/mdelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="15dp"
-        android:layout_marginEnd="14dp"
-        android:text="logout" />
-
-    <Button
-        android:id="@+id/mintern"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/mplacement"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="42dp"
-        android:text="Internship" />
+        android:layout_below="@+id/minternadd"
+        android:layout_marginTop="45dp"
+        android:text="delete internship" />
+
+    <Button
+        android:id="@+id/mdownload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mdelete"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:text="download internship data" />
+
 </RelativeLayout>

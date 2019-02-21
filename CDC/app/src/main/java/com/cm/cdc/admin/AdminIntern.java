@@ -22,41 +22,38 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.cm.cdc.AppController;
-import com.cm.cdc.Home;
+import com.cm.cdc.InternshipList;
 import com.cm.cdc.Placement_company_list;
 import com.cm.cdc.R;
 import com.cm.cdc.URL;
-import com.cm.cdc.UserData;
 
-import java.util.HashMap;
-import java.util.Map;
+public class AdminIntern extends AppCompatActivity {
 
-public class AdminPlacement extends AppCompatActivity {
+    Button madd,mdel,mdownload;
 
-    Button add,del,mdownload;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_placement);
+        setContentView(R.layout.activity_admin_intern);
 
-        requestStoragePermission();
-
-        add = findViewById(R.id.maddplacement);
-        del = findViewById(R.id.mdelplacement);
+        madd = findViewById(R.id.minternadd);
+        mdel = findViewById(R.id.mdelete);
         mdownload = findViewById(R.id.mdownload);
 
-        add.setOnClickListener(new View.OnClickListener() {
+        madd.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),AddPlacement.class);
+            public void onClick(View view) {
+                //add internship button
+                Intent i = new Intent(getApplicationContext(),AddInternship.class);
                 startActivity(i);
             }
         });
 
-        del.setOnClickListener(new View.OnClickListener() {
+        mdel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),Placement_company_list.class);
+                //delete internship button
+                Intent i = new Intent(getApplicationContext(), InternshipList.class);
                 i.putExtra("mode",2);
                 startActivity(i);
             }
@@ -65,7 +62,7 @@ public class AdminPlacement extends AppCompatActivity {
         mdownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //downloadfile("placementdata.xlsx");
+                //download internship data
                 makerequest();
             }
         });
@@ -94,12 +91,12 @@ public class AdminPlacement extends AppCompatActivity {
 
     void makerequest(){
         URL u = new URL();
-        StringRequest s = new StringRequest(Request.Method.POST, u.url+"excel.php", new Response.Listener<String>() {
+        StringRequest s = new StringRequest(Request.Method.POST, u.url+"internexcel.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 //Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
                 if(!response.trim().equals("No result")){
-                    Toast.makeText(getApplicationContext(),"downloading",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Downloading...",Toast.LENGTH_SHORT).show();
                     downloadfile(response.trim());
                 }else{
                     Toast.makeText(getApplicationContext(),"No result found",Toast.LENGTH_SHORT).show();

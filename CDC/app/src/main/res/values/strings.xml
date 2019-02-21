@@ -30,4 +30,34 @@
         <item>sem 4</item>
         <item>sem 5</item>
     </string-array>
+
+    <string-array name="cla">
+        <item>IT</item>
+        <item>CS</item>
+        <item>BA</item>
+        <item>BMS</item>
+        <item>BMM</item>
+        <item>BFM</item>
+        <item>BBI</item>
+        <item>BAF</item>
+        <item>MCOM</item>
+        <item>MSC</item>
+    </string-array>
+
+    <string-array name="YEAR">
+        <item>FY</item>
+        <item>SY</item>
+        <item>TY</item>
+    </string-array>
+
+    <string-array name="DIV">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>E</item>
+        <item>F</item>
+        <item>G</item>
+        <item>H</item>
+    </string-array>
 </resources>

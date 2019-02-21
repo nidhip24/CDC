@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".AppController"
@@ -16,9 +17,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".VideoPlay"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="landscape"></activity>
+        <activity android:name=".UpdateInternshipData"></activity>
+        <activity android:name=".InternshipList" />
+        <activity android:name=".admin.AddInternship" />
+        <activity android:name=".admin.AdminIntern" />
+        <activity
+            android:name=".VideoPlay"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

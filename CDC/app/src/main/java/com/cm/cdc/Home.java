@@ -3,8 +3,6 @@ package com.cm.cdc;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -23,7 +21,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.cm.cdc.admin.AdminC;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,11 +30,14 @@ public class Home extends AppCompatActivity
 
     int navItem = 0;
 
+    int navidd=0;
+
     // tags used to attach the fragments
     private static final String TAG_HOME = "home";
     private static final String TAG_TEAM = "team";
     private static final String TAG_P = "placement";
     private static final String TAG_EVENT= "event";
+    private static final String TAG_FUTURE= "eventFuture";
     private static final String TAG_INTERN= "intern";
     private static final String TAG_FEEDBACK= "feedback";
     private static final String TAG_HISTORY= "history";
@@ -48,7 +48,7 @@ public class Home extends AppCompatActivity
 
     NavigationView navigationView;
 
-    String activityTitles[] = {"Home","History","Team","Event","Internship","Placement","Feedback"};
+    String activityTitles[] = {"Home","History","Team","Internship","Placement","Memory Lane","Future Events","Feedback"};
     String username;
 
     @Override
@@ -109,7 +109,12 @@ public class Home extends AppCompatActivity
     }
 
     private void selectNavMenu() {
-        navigationView.getMenu().getItem(navItem).setChecked(true);
+        try{
+            navigationView.getMenu().getItem(navItem).setChecked(true);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -165,6 +170,7 @@ public class Home extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        navidd = id;
         if (id == R.id.nav_home) {
             CURRENT_TAG = TAG_HOME;
             navItem = 0;
@@ -174,17 +180,20 @@ public class Home extends AppCompatActivity
         }else if (id == R.id.nav_team) {
             CURRENT_TAG = TAG_TEAM;
             navItem = 2;
-        } else if (id == R.id.nav_event) {
-            CURRENT_TAG = TAG_EVENT;
-            navItem = 3;
         } else if (id == R.id.nav_intern) {
-            navItem = 4;
+            navItem = 3;
             CURRENT_TAG = TAG_INTERN;
         } else if (id == R.id.nav_placement) {
-            navItem = 5;
+            navItem = 4;
             CURRENT_TAG = TAG_P;
-        }  else if (id == R.id.nav_feedback) {
+        } else if (id == R.id.nav_mem_lane) {
+            CURRENT_TAG = TAG_EVENT;
+            navItem = 5;
+        } else if (id == R.id.nav_future) {
+            CURRENT_TAG = TAG_FUTURE;
             navItem = 6;
+        }  else if (id == R.id.nav_feedback) {
+            navItem = 7;
             CURRENT_TAG = TAG_FEEDBACK;
         } else if (id == R.id.nav_logout) {
             Toast.makeText(getApplicationContext(),"Logout",Toast.LENGTH_SHORT).show();
@@ -193,7 +202,7 @@ public class Home extends AppCompatActivity
             Intent i = new Intent(getApplicationContext(),MainActivity.class);
             startActivity(i);
         }
-
+        //Toast.makeText(getApplicationContext(),"no "+navItem,Toast.LENGTH_SHORT).show();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         if(id != R.id.nav_logout)
@@ -237,7 +246,9 @@ public class Home extends AppCompatActivity
     }
 
     private Fragment getHomeFragment(){
+        Toast.makeText(getApplicationContext(),"future is here" + navItem,Toast.LENGTH_SHORT).show();
         switch (navItem) {
+
             case 0:
                 // home
                 return new HomeFragment();
@@ -249,14 +260,18 @@ public class Home extends AppCompatActivity
                 return new Team();
             case 3:
                 // home
-                return new Event();
+                return new Internship();
             case 4:
                 // home
-                return new Internship();
+                return new Placement();
             case 5:
                 // home
-                return new Placement();
+                return new Event();
             case 6:
+                // home
+                Toast.makeText(getApplicationContext(),"future is here",Toast.LENGTH_SHORT).show();
+                return new EventFuture();
+            case 7:
                 // home
                 return new Feedback();
             default:

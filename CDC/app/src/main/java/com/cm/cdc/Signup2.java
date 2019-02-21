@@ -15,7 +15,9 @@ public class Signup2 extends AppCompatActivity implements AdapterView.OnItemSele
 
     Button reg2;
     String fname,rollno,grno,phno,eid;
-    EditText clas , ssc ,hsc,sem1,sem2,sem3,sem4,sem5;
+    EditText ssc ,hsc,sem1,sem2,sem3,sem4,sem5;
+
+    String clas;
     int semNumber = 0;
 
     @Override
@@ -23,18 +25,31 @@ public class Signup2 extends AppCompatActivity implements AdapterView.OnItemSele
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup2);
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        // Create an ArrayAdapter using the string array and a default spinner layout
+        Spinner spinner = findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.sem, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
-
         spinner.setOnItemSelectedListener(this);
 
+        final Spinner cla  = findViewById(R.id.sclass);
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,R.array.cla, android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        cla.setAdapter(adapter2);
+        cla.setOnItemSelectedListener(this);
 
-        clas  = (EditText)findViewById(R.id.clas);
+        final Spinner yer  = findViewById(R.id.syear);
+        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this,R.array.YEAR, android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        yer.setAdapter(adapter3);
+        yer.setOnItemSelectedListener(this);
+
+        final Spinner ddiivv  = findViewById(R.id.sdiv);
+        ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(this,R.array.DIV, android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ddiivv.setAdapter(adapter4);
+        ddiivv.setOnItemSelectedListener(this);
+
+
         ssc = (EditText)findViewById(R.id.ssc);
         hsc = (EditText)findViewById(R.id.hsc);
         sem1 = (EditText)findViewById(R.id.sem1);
@@ -61,7 +76,9 @@ public class Signup2 extends AppCompatActivity implements AdapterView.OnItemSele
         reg2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!clas.getText().toString().equals("") && !ssc.getText().toString().equals("") && !hsc.getText().toString().equals("") &&!sem1.getText().toString().equals("")){
+                clas = cla.getSelectedItem().toString() + "-" + yer.getSelectedItem().toString() + "-" + ddiivv.getSelectedItem().toString();
+                Toast.makeText(getApplicationContext(),clas,Toast.LENGTH_SHORT).show();
+                if (!clas.equals("") && !ssc.getText().toString().equals("") && !hsc.getText().toString().equals("") &&!sem1.getText().toString().equals("")){
                     int iflag=-1;
                     if (semNumber==1){
                         if(!sem1.getText().toString().equals("")){
@@ -96,7 +113,7 @@ public class Signup2 extends AppCompatActivity implements AdapterView.OnItemSele
                     }
                     if(iflag==1 && checkPercentage(ssc.getText().toString()) && checkPercentage(hsc.getText().toString()) ){
                         Intent i = new Intent(getApplicationContext(),Signup21.class);
-                        i.putExtra("class",clas.getText().toString());
+                        i.putExtra("class",clas);
                         i.putExtra("ssc",ssc.getText().toString());
                         i.putExtra("hsc",hsc.getText().toString());
 
@@ -162,47 +179,51 @@ public class Signup2 extends AppCompatActivity implements AdapterView.OnItemSele
         // Showing selected spinner item
         //Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
 
-        switch (item){
-            case "sem 1":
-                sem1.setVisibility(View.VISIBLE);
-                sem2.setVisibility(View.GONE);
-                sem3.setVisibility(View.GONE);
-                sem4.setVisibility(View.GONE);
-                sem5.setVisibility(View.GONE);
-                semNumber = 1;
-                break;
-            case "sem 2":
-                sem1.setVisibility(View.VISIBLE);
-                sem2.setVisibility(View.VISIBLE);
-                sem3.setVisibility(View.GONE);
-                sem4.setVisibility(View.GONE);
-                sem5.setVisibility(View.GONE);
-                semNumber = 2;
-                break;
-            case "sem 3":
-                sem1.setVisibility(View.VISIBLE);
-                sem2.setVisibility(View.VISIBLE);
-                sem3.setVisibility(View.VISIBLE);
-                sem4.setVisibility(View.GONE);
-                sem5.setVisibility(View.GONE);
-                semNumber = 3;
-                break;
-            case "sem 4":
-                sem1.setVisibility(View.VISIBLE);
-                sem2.setVisibility(View.VISIBLE);
-                sem3.setVisibility(View.VISIBLE);
-                sem4.setVisibility(View.VISIBLE);
-                sem5.setVisibility(View.GONE);
-                semNumber = 4;
-                break;
-            case "sem 5":
-                sem1.setVisibility(View.VISIBLE);
-                sem2.setVisibility(View.VISIBLE);
-                sem3.setVisibility(View.VISIBLE);
-                sem4.setVisibility(View.VISIBLE);
-                sem5.setVisibility(View.VISIBLE);
-                semNumber = 5;
-                break;
+        if (parent.getId() == R.id.spinner) {
+            switch (item) {
+                case "sem 1":
+                    sem1.setVisibility(View.VISIBLE);
+                    sem2.setVisibility(View.GONE);
+                    sem3.setVisibility(View.GONE);
+                    sem4.setVisibility(View.GONE);
+                    sem5.setVisibility(View.GONE);
+                    semNumber = 1;
+                    break;
+                case "sem 2":
+                    sem1.setVisibility(View.VISIBLE);
+                    sem2.setVisibility(View.VISIBLE);
+                    sem3.setVisibility(View.GONE);
+                    sem4.setVisibility(View.GONE);
+                    sem5.setVisibility(View.GONE);
+                    semNumber = 2;
+                    break;
+                case "sem 3":
+                    sem1.setVisibility(View.VISIBLE);
+                    sem2.setVisibility(View.VISIBLE);
+                    sem3.setVisibility(View.VISIBLE);
+                    sem4.setVisibility(View.GONE);
+                    sem5.setVisibility(View.GONE);
+                    semNumber = 3;
+                    break;
+                case "sem 4":
+                    sem1.setVisibility(View.VISIBLE);
+                    sem2.setVisibility(View.VISIBLE);
+                    sem3.setVisibility(View.VISIBLE);
+                    sem4.setVisibility(View.VISIBLE);
+                    sem5.setVisibility(View.GONE);
+                    semNumber = 4;
+                    break;
+                case "sem 5":
+                    sem1.setVisibility(View.VISIBLE);
+                    sem2.setVisibility(View.VISIBLE);
+                    sem3.setVisibility(View.VISIBLE);
+                    sem4.setVisibility(View.VISIBLE);
+                    sem5.setVisibility(View.VISIBLE);
+                    semNumber = 5;
+                    break;
+            }
+        }else if(parent.getId() == R.id.sclass){
+
         }
     }
     public void onNothingSelected(AdapterView<?> arg0) {

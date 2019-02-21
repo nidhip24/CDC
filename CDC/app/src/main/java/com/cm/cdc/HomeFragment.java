@@ -1,9 +1,6 @@
 package com.cm.cdc;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.MediaController;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -87,7 +83,7 @@ public class HomeFragment extends Fragment {
         final ImageButton imgbtn = getView().findViewById(R.id.img_v2);
         final ImageButton imgbtn2 = getView().findViewById(R.id.img_v1);
 
-        sliderLayout = getView().findViewById(R.id.imageSlider);
+        sliderLayout = getView().findViewById(R.id.a);
         info = getView().findViewById(R.id.homeinfo);
 //        v1 = getView().findViewById(R.id.vid1);
 //        v2 = getView().findViewById(R.id.vid2);

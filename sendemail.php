@@ -5,7 +5,7 @@ $email = "nidhipkathiriya@gmail.com";
 $pass = "nkcdc2019";
 
 $to      = $email;
-$subject = 'Registration - Carrier Development Cell';
+$subject = 'Registration - Career Development Cell';
 
 $message = "Dear $name,\nThank you registering with Nagindas Khandwala College's Career Development Cell\nFuture ready Today !!\n\nYour Username : $email \nPassword : $pass \n\nRegards,\nTeam CDC";
 

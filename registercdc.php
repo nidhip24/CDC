@@ -55,7 +55,7 @@ if ($conn->query($sql) === TRUE) {
 
 	//send mail
 	// $to      = $eid;
-	// $subject = 'Registration - Carrier Development Cell';
+	// $subject = 'Registration - Career Development Cell';
 
 	// $message = "Dear $fname,\nThank you registering with Nagindas Khandwala College's Career Development Cell\nFuture ready Today !!\n\nYour Username : $uid \nPassword : $pass \n\nRegards,\nTeam CDC";
 

@@ -12,7 +12,7 @@ import com.cm.cdc.UserData;
 
 public class AdminC extends AppCompatActivity {
 
-    Button placement,logout;
+    Button placement,logout,intern;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +20,7 @@ public class AdminC extends AppCompatActivity {
 
         placement = findViewById(R.id.mplacement);
         logout = findViewById(R.id.logout);
+        intern = findViewById(R.id.mintern);
 
         placement.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +36,14 @@ public class AdminC extends AppCompatActivity {
                 UserData u = new UserData();
                 u.deleteUser(getApplication());
                 Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(i);
+            }
+        });
+
+        intern.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),AdminIntern.class);
                 startActivity(i);
             }
         });

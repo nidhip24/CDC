@@ -27,14 +27,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Placement_company_list extends AppCompatActivity {
+public class InternshipList extends AppCompatActivity {
 
     ListView l;
     ArrayList<String> array = new ArrayList<String>();
     ArrayList<String> idarray = new ArrayList<String>();
     ArrayAdapter adapter;
     int mode=-1;
-    int flag = -1;
 
     // Progress dialog
     private ProgressDialog pDialog;
@@ -42,7 +41,7 @@ public class Placement_company_list extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_placement_company_list);
+        setContentView(R.layout.activity_internship_list);
 
         l = findViewById(R.id.listview);
 
@@ -82,16 +81,15 @@ public class Placement_company_list extends AppCompatActivity {
     private void checkCompany(final String id,final int pos){
         final URL u = new URL();
 
-        flag = -1;
         UserData userf = new UserData();
         final String username = userf.getUsername(getApplicationContext());
-        StringRequest s = new StringRequest(Request.Method.POST, u.url+"checkPlacementById.php", new Response.Listener<String>() {
+        StringRequest s = new StringRequest(Request.Method.POST, u.url+"checkInternshipById.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 //Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
                 if(response.trim().equals("go")){
 
-                    Intent i = new Intent(getApplicationContext(),UpdateData.class);
+                    Intent i = new Intent(getApplicationContext(),UpdateInternshipData.class);
                     i.putExtra("company-id",idarray.get(pos));
                     i.putExtra("company-name",array.get(pos));
                     startActivity(i);
@@ -121,13 +119,13 @@ public class Placement_company_list extends AppCompatActivity {
 
     private  void deletePlacement(final String lid){
         URL u = new URL();
-        StringRequest s = new StringRequest(Request.Method.POST, u.url+"delplacement.php", new Response.Listener<String>() {
+        StringRequest s = new StringRequest(Request.Method.POST, u.url+"deleteinternsship.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 //Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
                 if(response.trim().equals("done")){
                     Toast.makeText(getApplicationContext(),"Deleted",Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(getApplicationContext(),AdminC.class);
+                    Intent intent=new Intent(getApplicationContext(), AdminC.class);
                     //startActivity(intent);
                 }else{
                     Toast.makeText(getApplicationContext(),"Try again after some time...",Toast.LENGTH_SHORT).show();
@@ -154,40 +152,40 @@ public class Placement_company_list extends AppCompatActivity {
         showpDialog();
 
         String url = new URL().url;
-        url+="getCompany.php";
+        url+="getInternshipCompany.php";
 
         JsonArrayRequest req = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        Log.d("PlacementACtivity", response.toString());
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.d("InternshipACtivity", response.toString());
 
-                        try {
-                            // Parsing json array response
-                            // loop through each json object
-                            for (int i = 0; i < response.length(); i++) {
+                try {
+                    // Parsing json array response
+                    // loop through each json object
+                    for (int i = 0; i < response.length(); i++) {
 
-                                JSONObject com = (JSONObject) response.get(i);
+                        JSONObject com = (JSONObject) response.get(i);
 
-                                String cname = com.getString("cname");
-                                int id =com.getInt("id");
-                                idarray.add(id+"");
-                                array.add(cname);
-                            }
-                            adapter.notifyDataSetChanged();
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(getApplicationContext(),"Error: " + e.getMessage(),Toast.LENGTH_LONG).show();
-                        }
-                        hidepDialog();
+                        String cname = com.getString("cname");
+                        int id =com.getInt("id");
+                        idarray.add(id+"");
+                        array.add(cname);
                     }
-                }, new Response.ErrorListener() {
+                    adapter.notifyDataSetChanged();
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(),"Error: " + e.getMessage(),Toast.LENGTH_LONG).show();
+                }
+                hidepDialog();
+            }
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                VolleyLog.d("PlacementACtivity", "Error: " + error.getMessage());
+                VolleyLog.d("InternshipACtivity", "Error: " + error.getMessage());
                 //Toast.makeText(getApplicationContext(),error.getMessage(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(),"NO PLACEMENTS available right now", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"NO INTERNSHIP available right now", Toast.LENGTH_SHORT).show();
                 // hide the progress dialog
                 hidepDialog();
             }

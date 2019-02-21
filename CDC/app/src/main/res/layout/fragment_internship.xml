@@ -5,10 +5,27 @@
     android:layout_height="match_parent"
     tools:context=".Internship">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/apply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="158dp"
+            android:text="Apply for Internship" />
+
+        <Button
+            android:id="@+id/update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/apply"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="55dp"
+            android:text="Update" />
+    </RelativeLayout>
 
 </FrameLayout>
