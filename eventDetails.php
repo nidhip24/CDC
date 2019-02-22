@@ -19,6 +19,7 @@ if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) { 
 		$str[]=  array(
+        'id' => $row["id"],    
         'cname' => $row["cname"],
         'info' => $row["info"],
         'link' => $row["link"]

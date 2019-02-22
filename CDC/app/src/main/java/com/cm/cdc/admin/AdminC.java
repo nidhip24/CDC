@@ -52,7 +52,7 @@ public class AdminC extends AppCompatActivity {
         event.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),AdminEvent.class);
+                Intent i = new Intent(getApplicationContext(),EventHandler.class);
                 startActivity(i);
             }
         });
