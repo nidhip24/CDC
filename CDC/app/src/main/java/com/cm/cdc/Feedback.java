@@ -1,12 +1,28 @@
 package com.cm.cdc;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.cm.cdc.admin.AdminC;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -26,6 +42,9 @@ public class Feedback extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    Button btn;
+    EditText fd;
 
     private OnFragmentInteractionListener mListener;
 
@@ -101,5 +120,65 @@ public class Feedback extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        fd = getView().findViewById(R.id.mfedbk);
+        btn = getView().findViewById(R.id.mbtn);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UserData u = new UserData();
+                String username = u.getUsername(getActivity());
+                if(username.equals("no")){
+                    Toast.makeText(getActivity(),"Login again to continue...",Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(getActivity(),MainActivity.class);
+                    i.addCategory( Intent.CATEGORY_HOME );
+                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(i);
+                }
+                String feedbackTxt = fd.getText().toString().trim();
+                if(!feedbackTxt.equals("")){
+                    updateFeedback(feedbackTxt,username);
+                }else{
+                    Toast.makeText(getActivity(),"Enter something",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    void updateFeedback(final String feedb, final String uname){
+        URL u = new URL();
+        StringRequest s = new StringRequest(Request.Method.POST, u.url+"feedback.php", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(getActivity(),uname,Toast.LENGTH_SHORT).show();
+                    if(response.trim().equals("done")){
+                    Toast.makeText(getActivity(),"Thanks for feedback",Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(getActivity(), Home.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getActivity(),"Try again after some time...",Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getActivity(),"error",Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("feedback", feedb);
+                params.put("uid",uname);
+                return params;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(s);
     }
 }

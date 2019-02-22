@@ -34,7 +34,7 @@ public class CustomListAdapter extends BaseAdapter {
 
     @Override
     public int getItemViewType(int position) {
-        Log.d("CustomListAdapter",position+"");
+        //Log.d("CustomListAdapter",position+"");
         if(position%2==0){
             return 0;
         }

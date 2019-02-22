@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2019 at 08:42 PM
+-- Generation Time: Feb 22, 2019 at 01:11 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -54,6 +54,50 @@ INSERT INTO `document` (`docid`, `s1`, `s2`, `s3`, `s4`, `s5`, `ssc`, `hsc`) VAL
 ('DC566F29DB', 'DC566F29DBsem1.pdf', '', '', '', '', 'DC566F29DBssc.pdf', 'DC566F29DBhsc.pdf'),
 ('EC42770E9A', '', '', '', '', '', 'EC42770E9Assc.pdf', ''),
 ('EF9E2B12B9', 'EF9E2B12B9sem1.pdf', 'EF9E2B12B9sem2.pdf', 'EF9E2B12B9sem3.pdf', 'EF9E2B12B9sem4.pdf', 'EF9E2B12B9sem5.pdf', 'EF9E2B12B9ssc.pdf', 'EF9E2B12B9hsc.pdf');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `event`
+--
+
+DROP TABLE IF EXISTS `event`;
+CREATE TABLE `event` (
+  `id` int(11) NOT NULL,
+  `cname` varchar(30) NOT NULL,
+  `info` text NOT NULL,
+  `link` varchar(200) NOT NULL,
+  `status` varchar(10) NOT NULL DEFAULT 'open',
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `event`
+--
+
+INSERT INTO `event` (`id`, `cname`, `info`, `link`, `status`, `date`) VALUES
+(1, 'daskdaj', 'jsjda\nasad\na\nda\nda\nd\nada', 'sdadkadjad@djasdads', 'open', '2019-02-22 03:46:52'),
+(3, 'r6r66', 'high\nhhh', 'vsgdgzzh', 'open', '2019-02-22 11:19:25');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `feedback`
+--
+
+DROP TABLE IF EXISTS `feedback`;
+CREATE TABLE `feedback` (
+  `id` int(11) NOT NULL,
+  `uid` varchar(20) NOT NULL,
+  `feedback` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `feedback`
+--
+
+INSERT INTO `feedback` (`id`, `uid`, `feedback`) VALUES
+(3, 'abc', 'sddad\na\nda\nd\n\n\n\nada\nda\nsda');
 
 -- --------------------------------------------------------
 
@@ -176,7 +220,8 @@ INSERT INTO `placementdata` (`id`, `cname`, `info`, `link`, `status`, `date`) VA
 (11, 'nihip', 'chhand\npehchan\nc\nvmsnf\nd\n\n\n\nchdhvjsjjjâ‚¹^&â‚¹&&&â‚¹+\ncjdjjcms\ncsudj', 'http://google.com', 'open', '2019-01-11 14:09:07'),
 (12, 'NK', 'Greetings to all, \r\n\r\nCareer Development Cell is here with big opportunity for our Current TY IT CS students.  \r\n\r\nHello friends. Pool campus by L & T Infotech is arranged on 19 and 20 July 2018 at Thanks College for current TYBSC cs and it students. It is only for colleges between Andheri and Bhayandar. We shall not entertain students coming from outside of this range. Please ask your eligible students to enroll at following link by tomorrow before 7 pm. \r\n\r\nStudents are requested to not to pass the link to NON CDC STUDENTS. \r\n\r\nAlso please both the Google forms before tomorrow 7 pm.\r\n\r\n\r\nSSC and HSC 50% \r\n\r\nSem 1-4 60%\r\n\r\n\r\nThank you \r\n\r\n- Mr Ashish Modi.', 'gzhzhzhz', 'open', '2019-02-19 16:17:54'),
 (13, 'bababa', 'sasa\nsdadad\na\n\ns\nas\nacscascasc\n\ncdd d das asdas\nda\ndas\ndad\na d a\nd a\n da da\n\n\n\na d', 'aada', 'close', '2019-02-21 05:15:40'),
-(14, 'as', 'as', 'sdad', 'close', '2019-02-21 05:20:02');
+(14, 'as', 'as', 'sdad', 'close', '2019-02-21 05:20:02'),
+(15, 'd3d3d', 'dd\ndd\ndd\nddddd\n\n\ne\ne', 'nzns', 'open', '2019-02-22 11:14:07');
 
 -- --------------------------------------------------------
 
@@ -261,6 +306,18 @@ ALTER TABLE `document`
   ADD PRIMARY KEY (`docid`);
 
 --
+-- Indexes for table `event`
+--
+ALTER TABLE `event`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `feedback`
+--
+ALTER TABLE `feedback`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `internship`
 --
 ALTER TABLE `internship`
@@ -308,6 +365,18 @@ ALTER TABLE `updateplacement`
 --
 
 --
+-- AUTO_INCREMENT for table `event`
+--
+ALTER TABLE `event`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `feedback`
+--
+ALTER TABLE `feedback`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `internship`
 --
 ALTER TABLE `internship`
@@ -323,7 +392,7 @@ ALTER TABLE `mycdc`
 -- AUTO_INCREMENT for table `placementdata`
 --
 ALTER TABLE `placementdata`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `updateinternship`

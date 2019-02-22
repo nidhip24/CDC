@@ -1,12 +1,30 @@
 package com.cm.cdc;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,6 +39,15 @@ public class EventFuture extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    //Custom list
+    private List<EventData> eventList = new ArrayList<EventData>();
+
+    //customlist adapter
+    CustomListEventAdapter adapter;
+
+    // Progress dialog
+    private ProgressDialog pDialog;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -100,5 +127,94 @@ public class EventFuture extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        ListView listView =  getView().findViewById(R.id.eventlist);
+
+        pDialog = new ProgressDialog(getActivity());
+        pDialog.setMessage("Please wait...");
+        pDialog.setCancelable(false);
+
+        adapter = new CustomListEventAdapter(getActivity(), eventList);
+        listView.setAdapter(adapter);
+
+        makeJsonArrayRequest();
+
+//        String name[] = {"Prof. Preethi Rao","Mr. Ashish Modi","Ms. Ninoshka D'silva","Ms. Manila","Rushabh Shah","Vaibhavi Oza","Ajeet Singh Bajwa","Vir Thaker","Sheetal Shetty","Libinsa Nadar","Preet shah","Kaiwal Patwa","Vaibhavi Pawar","Mayur Pandey","Shreyansh Shanghanvi"};
+//        String post[] ={"Coordinator","Teacher In-charge","Teacher In-charge","Teacher In-charge","Chairperson","Chairperson","Chairperson","Vice Chairperson","Vice Chairperson","Registration HOD","Business Dev HOD","Business Dev HOD","Placement HOD","Internship HOS","Photography head"};
+//        //URL u = new URL();
+//        for(int i = 0;i<name.length;i++){
+//            EventData t = new EventData(name[i],post[i],"google.com/");
+//            eventList.add(t);
+//        }
+//        adapter = new CustomListEventAdapter(getActivity(), eventList);
+//        listView.setAdapter(adapter);
+        //adapter.notifyDataSetChanged();
+    }
+
+    private void makeJsonArrayRequest() {
+
+        showpDialog();
+
+        String url = new URL().url;
+        url+="eventDetails.php";
+
+        JsonArrayRequest req = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.d("EventFuture", response.toString());
+
+                try {
+                    // Parsing json array response
+                    // loop through each json object
+                    for (int i = 0; i < response.length(); i++) {
+
+                        JSONObject com = (JSONObject) response.get(i);
+
+                        String cname = com.getString("cname");
+                        String information = com.getString("info").trim();
+                        String link = com.getString("link").trim();
+
+                        EventData t = new EventData(cname,information,link);
+                        eventList.add(t);
+                        //idarray.add(id+"");
+                        //array.add(cname);
+                    }
+                    adapter.notifyDataSetChanged();
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getActivity(),"Error: " + e.getMessage(),Toast.LENGTH_LONG).show();
+                }
+                hidepDialog();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d("EventFuture", "Error: " + error.getMessage());
+                //Toast.makeText(getApplicationContext(),error.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"NO Events available right now", Toast.LENGTH_SHORT).show();
+                // hide the progress dialog
+                hidepDialog();
+            }
+        });
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(req);
+    }
+
+    private void showpDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hidepDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
     }
 }

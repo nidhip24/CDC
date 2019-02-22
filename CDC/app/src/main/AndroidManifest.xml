@@ -17,7 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".UpdateInternshipData"></activity>
+        <activity android:name=".ShowEventDetails"></activity>
+        <activity android:name=".admin.AdminEvent" />
+        <activity android:name=".UpdateInternshipData" />
         <activity android:name=".InternshipList" />
         <activity android:name=".admin.AddInternship" />
         <activity android:name=".admin.AdminIntern" />
