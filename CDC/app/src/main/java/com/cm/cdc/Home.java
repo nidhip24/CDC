@@ -63,6 +63,12 @@ public class Home extends AppCompatActivity
 
         mHandler = new Handler();
 
+//        Intent ii = getIntent();
+//        String na = ii.getStringExtra("open");
+
+        //Toast.makeText(getApplicationContext(),"what i got "+na,Toast.LENGTH_SHORT).show();
+
+
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -96,6 +102,7 @@ public class Home extends AppCompatActivity
 
 
     }
+
 
     private void hideItem()
     {
@@ -139,6 +146,27 @@ public class Home extends AppCompatActivity
             startActivity(i);
         }
         makerequest();
+        Intent ii = getIntent();
+        String na = ii.getStringExtra("open");
+
+        if(na!=null){
+            if (na.equalsIgnoreCase("internship")){
+                navItem = 3;
+                CURRENT_TAG = TAG_INTERN;
+            }else if (na.equalsIgnoreCase("event")){
+                CURRENT_TAG = TAG_FUTURE;
+                navItem = 6;
+            }else if (na.equalsIgnoreCase("placement")){
+                navItem = 4;
+                CURRENT_TAG = TAG_P;
+            }else{
+                Intent ua = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(ua);
+            }
+            loadFragment();
+        }
+
+        //Toast.makeText(getApplicationContext(),"what i got "+na,Toast.LENGTH_SHORT).show();
         super.onResume();
     }
 
@@ -246,7 +274,7 @@ public class Home extends AppCompatActivity
     }
 
     private Fragment getHomeFragment(){
-        Toast.makeText(getApplicationContext(),"future is here" + navItem,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"future is here" + navItem,Toast.LENGTH_SHORT).show();
         switch (navItem) {
 
             case 0:
@@ -269,7 +297,7 @@ public class Home extends AppCompatActivity
                 return new Event();
             case 6:
                 // home
-                Toast.makeText(getApplicationContext(),"future is here",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),"future is here",Toast.LENGTH_SHORT).show();
                 return new EventFuture();
             case 7:
                 // home

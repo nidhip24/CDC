@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "73795977578",
+    "firebase_url": "https://acdc-1231c.firebaseio.com",
+    "project_id": "acdc-1231c",
+    "storage_bucket": "acdc-1231c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:73795977578:android:59e4e67c8b005dde",
+        "android_client_info": {
+          "package_name": "com.cm.cdc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "73795977578-k3vepgq2b4vm3s7t8jiemci92593jii9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBObz7rG44XqdR8WslTyv9ixX2akSocPAQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
