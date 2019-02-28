@@ -1,15 +1,31 @@
 package com.cm.cdc;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.cm.cdc.adapter.GalleryAdapter;
+import com.cm.cdc.model.Image;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 
 /**
@@ -26,7 +42,12 @@ public class Event extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-
+    private String TAG = MainActivity.class.getSimpleName();
+    private static final String endpoint = new URL().url+"getMemory.php";
+    private ArrayList<Image> images;
+    private ProgressDialog pDialog;
+    private GalleryAdapter mAdapter;
+    private RecyclerView recyclerView;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -115,9 +136,71 @@ public class Event extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        recyclerView = view.findViewById(R.id.recycler_view);
 
+        pDialog = new ProgressDialog(getContext());
+        images = new ArrayList<>();
+        mAdapter = new GalleryAdapter(getContext(), images);
 
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 2);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(mAdapter);
+
+        fetchImages();
     }
 
 
+    private void fetchImages() {
+
+        pDialog.setMessage("Loading Events...");
+        pDialog.show();
+
+        JsonArrayRequest req = new JsonArrayRequest(endpoint,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.d(TAG, response.toString());
+                        pDialog.hide();
+
+                        images.clear();
+                        for (int i = 0; i < response.length(); i++) {
+                            try {
+                                JSONObject object = response.getJSONObject(i);
+                                Image image = new Image();
+                                image.setName(object.getString("name"));
+
+                                JSONObject url = object.getJSONObject("url");
+
+                                ArrayList<String> temp = new ArrayList<>();
+                                for(int j=1;j<=url.length();j++){
+                                    Log.e("NNOONONO",url.getString(String.valueOf(j)));
+                                    temp.add(url.getString(String.valueOf(j)));
+                                }
+                                image.setURL(temp);
+//                                image.setSmall(url.getString("small"));
+//                                image.setMedium(url.getString("medium"));
+//                                image.setLarge(url.getString("large"));
+                                image.setTimestamp(object.getString("name"));
+
+                                images.add(image);
+
+                            } catch (JSONException e) {
+                                Log.e(TAG, "Json parsing error: " + e.getMessage());
+                            }
+                        }
+
+                        mAdapter.notifyDataSetChanged();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Error: " + error.getMessage());
+                pDialog.hide();
+            }
+        });
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(req);
+    }
 }

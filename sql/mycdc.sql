@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2019 at 01:11 PM
+-- Generation Time: Feb 28, 2019 at 07:20 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -28,7 +28,6 @@ SET time_zone = "+00:00";
 -- Table structure for table `document`
 --
 
-DROP TABLE IF EXISTS `document`;
 CREATE TABLE `document` (
   `docid` varchar(20) NOT NULL,
   `s1` varchar(20) NOT NULL,
@@ -61,7 +60,6 @@ INSERT INTO `document` (`docid`, `s1`, `s2`, `s3`, `s4`, `s5`, `ssc`, `hsc`) VAL
 -- Table structure for table `event`
 --
 
-DROP TABLE IF EXISTS `event`;
 CREATE TABLE `event` (
   `id` int(11) NOT NULL,
   `cname` varchar(30) NOT NULL,
@@ -77,7 +75,10 @@ CREATE TABLE `event` (
 
 INSERT INTO `event` (`id`, `cname`, `info`, `link`, `status`, `date`) VALUES
 (1, 'daskdaj', 'jsjda\nasad\na\nda\nda\nd\nada', 'sdadkadjad@djasdads', 'open', '2019-02-22 03:46:52'),
-(3, 'r6r66', 'high\nhhh', 'vsgdgzzh', 'open', '2019-02-22 11:19:25');
+(3, 'r6r66', 'high\nhhh', 'vsgdgzzh', 'open', '2019-02-22 11:19:25'),
+(4, 'sss', 'sss', 'ssss', 'close', '2019-02-22 22:36:41'),
+(5, '1111111', '11', '1', 'open', '2019-02-28 18:16:20'),
+(6, 'yyy', 's', 'as', 'open', '2019-02-28 18:19:17');
 
 -- --------------------------------------------------------
 
@@ -85,7 +86,6 @@ INSERT INTO `event` (`id`, `cname`, `info`, `link`, `status`, `date`) VALUES
 -- Table structure for table `feedback`
 --
 
-DROP TABLE IF EXISTS `feedback`;
 CREATE TABLE `feedback` (
   `id` int(11) NOT NULL,
   `uid` varchar(20) NOT NULL,
@@ -105,7 +105,6 @@ INSERT INTO `feedback` (`id`, `uid`, `feedback`) VALUES
 -- Table structure for table `internship`
 --
 
-DROP TABLE IF EXISTS `internship`;
 CREATE TABLE `internship` (
   `id` int(11) NOT NULL,
   `cname` varchar(30) NOT NULL,
@@ -121,7 +120,9 @@ CREATE TABLE `internship` (
 
 INSERT INTO `internship` (`id`, `cname`, `info`, `link`, `status`, `date`) VALUES
 (1, 'ssss', 'ssssssssssss', 'sssssss', 'open', '2019-02-21 05:21:11'),
-(2, 'demo', 'dkasdka', 'lsdlakda', 'close', '2019-02-21 15:08:03');
+(2, 'demo', 'dkasdka', 'lsdlakda', 'close', '2019-02-21 15:08:03'),
+(3, 'ssss', 'sss', 'sss', 'close', '2019-02-28 18:14:58'),
+(4, 'saa', 'aaa', 'aa', 'open', '2019-02-28 18:16:36');
 
 -- --------------------------------------------------------
 
@@ -129,7 +130,6 @@ INSERT INTO `internship` (`id`, `cname`, `info`, `link`, `status`, `date`) VALUE
 -- Table structure for table `mycdc`
 --
 
-DROP TABLE IF EXISTS `mycdc`;
 CREATE TABLE `mycdc` (
   `id` int(11) NOT NULL,
   `docid` varchar(20) NOT NULL,
@@ -166,7 +166,6 @@ INSERT INTO `mycdc` (`id`, `docid`, `fname`, `rollno`, `grno`, `phno`, `eid`, `c
 --
 -- Triggers `mycdc`
 --
-DROP TRIGGER IF EXISTS `add_user_privilege`;
 DELIMITER $$
 CREATE TRIGGER `add_user_privilege` BEFORE INSERT ON `mycdc` FOR EACH ROW INSERT INTO user_privilege VALUES(new.uid,"user")
 $$
@@ -178,7 +177,6 @@ DELIMITER ;
 -- Table structure for table `offerletter`
 --
 
-DROP TABLE IF EXISTS `offerletter`;
 CREATE TABLE `offerletter` (
   `docid` varchar(20) NOT NULL,
   `lname` varchar(50) NOT NULL
@@ -199,7 +197,6 @@ INSERT INTO `offerletter` (`docid`, `lname`) VALUES
 -- Table structure for table `placementdata`
 --
 
-DROP TABLE IF EXISTS `placementdata`;
 CREATE TABLE `placementdata` (
   `id` int(11) NOT NULL,
   `cname` varchar(30) NOT NULL,
@@ -221,7 +218,8 @@ INSERT INTO `placementdata` (`id`, `cname`, `info`, `link`, `status`, `date`) VA
 (12, 'NK', 'Greetings to all, \r\n\r\nCareer Development Cell is here with big opportunity for our Current TY IT CS students.  \r\n\r\nHello friends. Pool campus by L & T Infotech is arranged on 19 and 20 July 2018 at Thanks College for current TYBSC cs and it students. It is only for colleges between Andheri and Bhayandar. We shall not entertain students coming from outside of this range. Please ask your eligible students to enroll at following link by tomorrow before 7 pm. \r\n\r\nStudents are requested to not to pass the link to NON CDC STUDENTS. \r\n\r\nAlso please both the Google forms before tomorrow 7 pm.\r\n\r\n\r\nSSC and HSC 50% \r\n\r\nSem 1-4 60%\r\n\r\n\r\nThank you \r\n\r\n- Mr Ashish Modi.', 'gzhzhzhz', 'open', '2019-02-19 16:17:54'),
 (13, 'bababa', 'sasa\nsdadad\na\n\ns\nas\nacscascasc\n\ncdd d das asdas\nda\ndas\ndad\na d a\nd a\n da da\n\n\n\na d', 'aada', 'close', '2019-02-21 05:15:40'),
 (14, 'as', 'as', 'sdad', 'close', '2019-02-21 05:20:02'),
-(15, 'd3d3d', 'dd\ndd\ndd\nddddd\n\n\ne\ne', 'nzns', 'open', '2019-02-22 11:14:07');
+(15, 'd3d3d', 'dd\ndd\ndd\nddddd\n\n\ne\ne', 'nzns', 'open', '2019-02-22 11:14:07'),
+(16, 'zzz', 'sdad', 'sdad', 'open', '2019-02-28 18:09:16');
 
 -- --------------------------------------------------------
 
@@ -229,7 +227,6 @@ INSERT INTO `placementdata` (`id`, `cname`, `info`, `link`, `status`, `date`) VA
 -- Table structure for table `updateinternship`
 --
 
-DROP TABLE IF EXISTS `updateinternship`;
 CREATE TABLE `updateinternship` (
   `id` int(11) NOT NULL,
   `iid` int(11) NOT NULL,
@@ -251,7 +248,6 @@ INSERT INTO `updateinternship` (`id`, `iid`, `uid`, `letter`, `feedback`) VALUES
 -- Table structure for table `updateplacement`
 --
 
-DROP TABLE IF EXISTS `updateplacement`;
 CREATE TABLE `updateplacement` (
   `id` int(11) NOT NULL,
   `pid` int(11) NOT NULL,
@@ -273,7 +269,6 @@ INSERT INTO `updateplacement` (`id`, `pid`, `uid`, `designation`, `package`) VAL
 -- Table structure for table `user_privilege`
 --
 
-DROP TABLE IF EXISTS `user_privilege`;
 CREATE TABLE `user_privilege` (
   `username` varchar(20) NOT NULL,
   `type` varchar(10) NOT NULL
@@ -368,7 +363,7 @@ ALTER TABLE `updateplacement`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `feedback`
@@ -380,7 +375,7 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `internship`
 --
 ALTER TABLE `internship`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `mycdc`
@@ -392,7 +387,7 @@ ALTER TABLE `mycdc`
 -- AUTO_INCREMENT for table `placementdata`
 --
 ALTER TABLE `placementdata`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `updateinternship`

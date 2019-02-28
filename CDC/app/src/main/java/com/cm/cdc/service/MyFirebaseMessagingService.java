@@ -80,22 +80,27 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             String title = data.getString("title");
             String message = data.getString("message");
-            boolean isBackground = data.getBoolean("is_background");
-            String imageUrl = data.getString("image");
+            //boolean isBackground = data.getBoolean("is_background");
+            //String imageUrl = data.getString("image");
             String timestamp = data.getString("timestamp");
-            JSONObject payload = data.getJSONObject("payload");
+            //JSONObject payload = data.getJSONObject("payload");
 
             Log.e(TAG, "title: " + title);
             Log.e(TAG, "message: " + message);
-            Log.e(TAG, "isBackground: " + isBackground);
-            Log.e(TAG, "payload: " + payload.toString());
-            Log.e(TAG, "imageUrl: " + imageUrl);
+            //Log.e(TAG, "isBackground: " + isBackground);
+            //Log.e(TAG, "payload: " + payload.toString());
+            //Log.e(TAG, "imageUrl: " + imageUrl);
             Log.e(TAG, "timestamp: " + timestamp);
 
 
             if (!NotificationUtils.isAppIsInBackground(getApplicationContext())) {
                 // app is in foreground, broadcast the push message
                 Log.e(TAG, "in fore");
+
+                Intent resultIntent = new Intent(getApplicationContext(), Home.class);
+                resultIntent.putExtra("open", title.toLowerCase());
+                showNotificationMessage(getApplicationContext(), title, message, timestamp, resultIntent);
+
                 Intent pushNotification = new Intent(Config.PUSH_NOTIFICATION);
                 pushNotification.putExtra("message", message);
                 LocalBroadcastManager.getInstance(this).sendBroadcast(pushNotification);
@@ -129,17 +134,18 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //                }
 
                 Intent resultIntent = new Intent(getApplicationContext(), Home.class);
-                resultIntent.putExtra("open", title);
+                resultIntent.putExtra("open", title.toLowerCase());
                 Log.e(TAG, title);
                 resultIntent.putExtra("message", message);
 
+                showNotificationMessage(getApplicationContext(), title, message, timestamp, resultIntent);
                 // check for image attachment
-                if (TextUtils.isEmpty(imageUrl)) {
-                    showNotificationMessage(getApplicationContext(), title, message, timestamp, resultIntent);
-                } else {
-                    // image is present, show notification with image
-                    showNotificationMessageWithBigImage(getApplicationContext(), title, message, timestamp, resultIntent, imageUrl);
-                }
+//                if (TextUtils.isEmpty(imageUrl)) {
+//
+//                } else {
+//                    // image is present, show notification with image
+//                    showNotificationMessageWithBigImage(getApplicationContext(), title, message, timestamp, resultIntent, imageUrl);
+//                }
             }
         } catch (JSONException e) {
             Log.e(TAG, "Json Exception: " + e.getMessage());
