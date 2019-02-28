@@ -1,4 +1,12 @@
 <?php
+
+	//PHPMailer lib
+	use PHPMailer\PHPMailer\PHPMailer;
+	use PHPMailer\PHPMailer\Exception;
+
+	//Load Composer's autoloader
+	require 'vendor/autoload.php';
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -64,6 +72,35 @@ if ($conn->query($sql) === TRUE) {
 	//     'X-Mailer: PHP/' . phpversion();
 
 	// mail($to, $subject, $message, $headers);
+	$mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+	try {
+	    //Server settings
+	    $mail->SMTPDebug = 0;                                 // Enable verbose debug output
+	    $mail->isSMTP();    
+	    $mail->Host = 'smtp.gmail.com';
+	    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+	    $mail->Username = "YOUR_EMAIL";                 // SMTP username
+	    $mail->Password = 'YOUR_PASSWORD';                           // SMTP password
+	    $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+	    $mail->Port = 587;                                    // TCP port to connect to
+
+	    //Recipients
+	    $mail->setFrom("YOUR_EMAIL", 'CDC');
+	    $mail->addAddress($eid,$fname);     // Add a recipient
+	   
+	    //Content
+	    $mail->isHTML(true);                                  // Set email format to HTML
+	    $mail->Subject = 'Registration - Career Development Cell';
+	    $mail->Body    = "Dear $fname,\nThank you registering with Nagindas Khandwala College's Career Development Cell\nFuture ready Today !!\n\nYour Username : $uid \nPassword : $pass \n\nRegards,\nTeam CDC";
+	    $mail->AltBody = "Dear $fname,\nThank you registering with Nagindas Khandwala College's Career Development Cell\nFuture ready Today !!\n\nYour Username : $uid \nPassword : $pass \n\nRegards,\nTeam CDC";
+
+	    $mail->send();
+
+	    //echo 'Message has been sent';
+	    echo "done";
+	} catch (Exception $e) {
+	    echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+	}
 } else {
     echo "Error";
 }
