@@ -51,6 +51,8 @@ public class Home extends AppCompatActivity
     String activityTitles[] = {"Home","History","Team","Internship","Placement","Memory Lane","Future Events","Feedback"};
     String username;
 
+    View navHeader;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +80,7 @@ public class Home extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        View navHeader = navigationView.getHeaderView(0);
+        navHeader = navigationView.getHeaderView(0);
 
         UserData u = new UserData();
         username = u.getUsername(getApplicationContext());
@@ -89,8 +91,9 @@ public class Home extends AppCompatActivity
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
         }else{
-            TextView ut = navHeader.findViewById(R.id.usernamea);
-            ut.setText(username);
+//            TextView ut = navHeader.findViewById(R.id.usernamea);
+//            ut.setText(username);
+            makerequestforname();
         }
 
 
@@ -320,6 +323,43 @@ public class Home extends AppCompatActivity
                     hideItem();
                 }else{
                     //Toast.makeText(getApplicationContext(),"no 2 time",Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //Toast.makeText(getApplicationContext(),"error",Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("uname", username);
+                return params;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(s);
+    }
+
+    void makerequestforname(){
+        URL u = new URL();
+
+        UserData userf = new UserData();
+        username = userf.getUsername(getApplicationContext());
+        StringRequest s = new StringRequest(Request.Method.POST, u.url+"getname.php", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                //Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
+                if(!response.trim().equals("error")){
+                    //hideItem();
+                    TextView ut = navHeader.findViewById(R.id.usernamea);
+                    ut.setText(response.trim());
+                }else{
+                    Toast.makeText(getApplicationContext(),"Login again to continue...",Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                    i.addCategory( Intent.CATEGORY_HOME );
+                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(i);
                 }
             }
         }, new Response.ErrorListener() {

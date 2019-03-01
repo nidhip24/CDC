@@ -12,6 +12,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -422,7 +423,9 @@ public class Signup21 extends AppCompatActivity {
         URL u = new URL();
         StringRequest s = new StringRequest(Request.Method.POST, u.url+"up.php", new Response.Listener<String>() {
             @Override
+
             public void onResponse(String response) {
+                Log.e("uploaddddd",response);
                 if(response.trim().equals("done")){
                     if(pSsc==0){
                         pSsc = 1;

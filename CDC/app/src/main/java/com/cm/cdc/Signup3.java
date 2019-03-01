@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -149,13 +150,16 @@ public class Signup3 extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 //Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
-                if(response.trim().equals("Done")){
+                Log.e("dammm",response);
+                if(response.trim().equals("done")){
                     Intent intent=new Intent(Signup3.this,MainActivity.class);
-                    startActivity(intent);
+                    //startActivity(intent);
+                    hidepDialog();
+                    makeRequest2();
                 }else{
-
+                    Toast.makeText(getApplicationContext(),"Try again",Toast.LENGTH_SHORT).show();
                 }
-                hidepDialog();
+                //hidepDialog();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -185,6 +189,45 @@ public class Signup3 extends AppCompatActivity {
                 params.put("sem4", sem4);
                 params.put("sem5", sem5);
                 params.put("docid", docid);
+
+                return params;
+
+            }
+        };
+        AppController.getInstance().addToRequestQueue(s);
+    }
+
+    void makeRequest2(){
+        showpDialog();
+        URL u = new URL();
+        StringRequest s = new StringRequest(Request.Method.POST, u.url+"dm.php", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                //Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
+                Log.e("dammmmmmmm2",response);
+                if(response.trim().equals("done")){
+                    Intent intent=new Intent(Signup3.this,MainActivity.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getApplicationContext(),"Try again",Toast.LENGTH_SHORT).show();
+                }
+                hidepDialog();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),"error",Toast.LENGTH_SHORT).show();
+                hidepDialog();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("uid", uid.getText().toString());
+                params.put("pass",pass.getText().toString());
+                params.put("fname", fname);
+                params.put("phno", phno);
+                params.put("eid", eid);
 
                 return params;
 
